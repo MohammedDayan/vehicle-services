@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_service_app/ui/home1.dart';
 import 'package:vehicle_service_app/ui/homepage.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Vehicle Service',
-      home: Homepage(),
+      home:  HomePage(),
     );
   }
 }
