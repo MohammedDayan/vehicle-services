@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vehicle_service_app/ui/homepage.dart';
+import 'package:vehicle_service_app/app_ui/homepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      color: Colors.white,
       title: 'Vehicle Service',
       home: Homepage(),
     );
