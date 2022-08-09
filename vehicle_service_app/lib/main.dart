@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vehicle_service_app/app_ui/homepage.dart';
+import 'package:vehicle_service_app/ui/home1.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       color: Colors.white,
       title: 'Vehicle Service',
-      home: Homepage(),
+      home: HomePage(),
     );
   }
 }

@@ -36,6 +36,8 @@ dependencies:
   cloud_firestore: ^3.3.0
   
   carousel_slider: ^4.1.1
+  lottie: ^1.4.0
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -63,8 +65,17 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  
+    
+
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/OpenSans.ttf
+
   # To add assets to your application, add an assets section, like this:
   assets:
+      - assets/images/
       - assets/IMG_0934.jpg
       - assets/car.jpg
       - assets/1.png
@@ -86,10 +97,7 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-     - family: Schyler
-       fonts:
-        - asset: assets/fonts/CustomIcons.ttf
+
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
