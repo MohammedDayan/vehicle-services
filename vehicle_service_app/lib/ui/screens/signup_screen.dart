@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:vehicle_service_app/config/authentication.dart';
 import 'package:vehicle_service_app/ui/components/components.dart';
 import 'package:vehicle_service_app/ui/components/under_part.dart';
 import 'package:vehicle_service_app/ui/screens/screens.dart';
@@ -10,6 +11,8 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _email = TextEditingController();
+    TextEditingController _password = TextEditingController();
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -19,8 +22,8 @@ class SignUpScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Stack(
               children: [
-                 Upside(
-                  imgUrl: Lottie.asset("assets/anim.json") ,
+                Upside(
+                  imgUrl: Lottie.asset("assets/anim.json"),
                 ),
                 const PageTitleBar(title: 'Create New Account'),
                 Padding(
@@ -55,12 +58,35 @@ class SignUpScreen extends StatelessWidget {
                         Form(
                           child: Column(
                             children: [
-                              const RoundedInputField(
-                                  hintText: "Email", icon: Icons.email),
-                              const RoundedInputField(
-                                  hintText: "Name", icon: Icons.person),
-                              const RoundedPasswordField(),
-                              RoundedButton(text: 'REGISTER', press: () {}),
+                              RoundedInputField(
+                                controller: _email,
+                                hintText: "Email",
+                                icon: Icons.email,
+                              ),
+                              // RoundedInputField(
+                              //   hintText: "Name",
+                              //   icon: Icons.person,
+                              // ),
+                              RoundedPasswordField(
+                                controller: _password,
+                              ),
+                              RoundedButton(
+                                  text: 'REGISTER',
+                                  press: () async {
+                                    bool successful = await register(
+                                        _email.text, _password.text);
+                                    if (successful) {
+                                      const snackbar =
+                                          SnackBar(content: Text("successful"));
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackbar);
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const LoginScreen()));
+                                    }
+                                  }),
                               const SizedBox(
                                 height: 10,
                               ),
