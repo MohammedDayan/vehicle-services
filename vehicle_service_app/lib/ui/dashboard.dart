@@ -50,9 +50,9 @@ class _HomepageState extends State<Homepage> {
                     children: [
                       Container(
                         padding: const EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                        child: Text(
-                          'Hello Dan ' + user.email!,
-                          style: const TextStyle(
+                        child: const Text(
+                          'Hello Dan ',
+                          style: TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),

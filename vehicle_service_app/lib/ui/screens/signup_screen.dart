@@ -6,13 +6,18 @@ import 'package:vehicle_service_app/ui/components/under_part.dart';
 import 'package:vehicle_service_app/ui/screens/screens.dart';
 import 'package:vehicle_service_app/ui/widgets/widgets.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  @override
   Widget build(BuildContext context) {
-    TextEditingController _email = TextEditingController();
-    TextEditingController _password = TextEditingController();
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -73,6 +78,8 @@ class SignUpScreen extends StatelessWidget {
                               RoundedButton(
                                   text: 'REGISTER',
                                   press: () async {
+                                    print("this is the pSSWORD " +
+                                        _password.text);
                                     bool successful = await register(
                                         _email.text, _password.text);
                                     if (successful) {
