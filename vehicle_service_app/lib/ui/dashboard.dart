@@ -1,9 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:vehicle_service_app/Custom_icons.dart';
-import 'package:vehicle_service_app/app_ui/recentcars.dart';
-import 'package:vehicle_service_app/app_ui/rentacar.dart';
+import 'package:vehicle_service_app/ui/recentcars.dart';
+import 'package:vehicle_service_app/ui/rentacar.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -13,6 +13,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -49,12 +50,13 @@ class _HomepageState extends State<Homepage> {
                     children: [
                       Container(
                         padding: const EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                        child: const Text(
-                          'Hello Dan',
-                          style: TextStyle(
+                        child: Text(
+                          'Hello Dan ' + user.email!,
+                          style: const TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
+                          overflow: TextOverflow.clip,
                         ),
                       ),
                     ],

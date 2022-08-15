@@ -1,13 +1,31 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vehicle_service_app/config/constants.dart';
 import 'package:vehicle_service_app/ui/components/components.dart';
 import 'package:vehicle_service_app/ui/components/under_part.dart';
+import 'package:vehicle_service_app/ui/dashboard.dart';
 import 'package:vehicle_service_app/ui/screens/signup_screen.dart';
+import 'package:vehicle_service_app/ui/welcome.dart';
 import 'package:vehicle_service_app/ui/widgets/widgets.dart';
 
-class LoginScreen extends StatelessWidget {
+import '../../config/authentication.dart';
+
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _emailcontroller = TextEditingController();
+  final _passwordcontroller = TextEditingController();
+
+  void dispose() {
+    _emailcontroller.dispose();
+    _passwordcontroller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +38,9 @@ class LoginScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Stack(
               children: [
-                Container(
-                  
-                ),
-                  Upside(
-                 imgUrl: Lottie.asset('assets/anim.json'),
-                  
-                  
+                Container(),
+                Upside(
+                  imgUrl: Lottie.asset('assets/anim.json'),
                 ),
                 const PageTitleBar(title: 'Login to your account'),
                 Padding(
@@ -61,11 +75,29 @@ class LoginScreen extends StatelessWidget {
                         Form(
                           child: Column(
                             children: [
-                              const RoundedInputField(
-                                  hintText: "Email", icon: Icons.email),
-                              const RoundedPasswordField(),
+                              RoundedInputField(
+                                hintText: "Email",
+                                icon: Icons.email,
+                                controller: _emailcontroller,
+                              ),
+                              RoundedPasswordField(
+                                controller: _passwordcontroller,
+                              ),
                               switchListTile(),
-                              RoundedButton(text: 'LOGIN', press: () {}),
+                              RoundedButton(
+                                  text: 'LOGIN',
+                                  press: () async {
+                                    bool navigate = await signIn(
+                                        _emailcontroller.text,
+                                        _passwordcontroller.text);
+                                    if (navigate) {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const Homepage()));
+                                    } else {}
+                                  }),
                               const SizedBox(
                                 height: 10,
                               ),
@@ -73,9 +105,11 @@ class LoginScreen extends StatelessWidget {
                                 title: "Don't have an account?",
                                 navigatorText: "Register here",
                                 onTap: () {
-                                  Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => const SignUpScreen())
-                                  );
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const SignUpScreen()));
                                 },
                               ),
                               const SizedBox(
@@ -89,7 +123,9 @@ class LoginScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w600,
                                     fontSize: 13),
                               ),
-                              const SizedBox(height: 20,)
+                              const SizedBox(
+                                height: 20,
+                              )
                             ],
                           ),
                         )

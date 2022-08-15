@@ -1,7 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:vehicle_service_app/ui/home1.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+import 'package:flutter/material.dart';
+import 'package:vehicle_service_app/ui/welcome.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
