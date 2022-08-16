@@ -13,13 +13,12 @@ class _Home1State extends State<HomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      //backgroundColor: Colors.black12,
       body: Container(
         width: size.width,
           height: size.height,
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('assets/images/lam.jpg'),
+            image: AssetImage('assets/images/suv1.jpg'),
             fit: BoxFit.cover,
           )),
           child: Column(children: [
