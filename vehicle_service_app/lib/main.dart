@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:vehicle_service_app/ui/home1.dart';
-import 'package:vehicle_service_app/ui/homepage.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+import 'package:flutter/material.dart';
+import 'package:vehicle_service_app/ui/welcome.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -12,8 +15,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      color: Colors.white,
       title: 'Vehicle Service',
-      home:  HomePage(),
+      home: HomePage(),
     );
   }
 }
