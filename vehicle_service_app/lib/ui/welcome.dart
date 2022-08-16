@@ -20,7 +20,7 @@ class _Home1State extends State<HomePage> {
           height: size.height,
           decoration: const BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('assets/images/lam.jpg'),
+            image: AssetImage('assets/images/suv1.jpg'),
             fit: BoxFit.cover,
           )),
           child: Column(children: [
@@ -44,8 +44,8 @@ class _Home1State extends State<HomePage> {
               ),
             ),
             //causing overflow of widgets in first page
-            const SizedBox(
-                // height: size.height / 3,
+             SizedBox(
+                 height: size.height / 3,
                 ),
 
             Column(verticalDirection: VerticalDirection.down, children: [
