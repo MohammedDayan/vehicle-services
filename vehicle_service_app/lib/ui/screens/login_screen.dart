@@ -22,10 +22,10 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailcontroller = TextEditingController();
   final _passwordcontroller = TextEditingController();
 
-  void dispose() {
-    _emailcontroller.dispose();
-    _passwordcontroller.dispose();
-  }
+  //void dispose() {
+    //_emailcontroller.dispose();
+    //_passwordcontroller.dispose();
+  //}
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const HomePage()));
+                                                  const Homepage()));
                                     } else {}
                                   }),
                               const SizedBox(

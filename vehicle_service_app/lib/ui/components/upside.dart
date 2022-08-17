@@ -15,7 +15,7 @@ class Upside extends StatelessWidget {
         Container(
           width: size.width,
           height: size.height / 2,
-          color: Color.fromARGB(255, 17, 104, 19),
+          //color: kPrimaryColor,
           //color: kPrimaryColor,
           child: Padding(
             padding: const EdgeInsets.only(top: 10.0),

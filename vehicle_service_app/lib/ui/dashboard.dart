@@ -18,7 +18,7 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.white, // status bar color
-      statusBarIconBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark
     ));
     return Container(
       color: Colors.white,
@@ -35,6 +35,7 @@ class _HomepageState extends State<Homepage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconButton(
+                          color: Colors.green,
                           icon: const Icon(Icons.more_vert),
                           onPressed: () {},
                         ),

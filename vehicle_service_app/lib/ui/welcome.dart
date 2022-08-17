@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vehicle_service_app/config/authentication.dart';
+import 'package:vehicle_service_app/config/constants.dart';
 import 'package:vehicle_service_app/ui/screens/screens.dart';
 
 class HomePage extends StatefulWidget {
@@ -80,7 +81,7 @@ class _Home1State extends State<HomePage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
                         ),
-                        primary: const Color.fromARGB(255, 17, 104, 19),
+                        primary:  kPrimaryColor,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 100, vertical: 20)),
                     onPressed: () {
