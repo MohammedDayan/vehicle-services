@@ -4,9 +4,12 @@ import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:vehicle_service_app/ui/recentcars.dart';
 import 'package:vehicle_service_app/ui/rentacar.dart';
+import 'package:vehicle_service_app/ui/widgets/drawer.dart';
+
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
+
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -14,16 +17,22 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   final user = FirebaseAuth.instance.currentUser!;
+  
+  
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.white, // status bar color
       statusBarIconBrightness: Brightness.dark
     ));
+   
+    
     return Container(
       color: Colors.white,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        drawer: CustomDrawer(),
+        
+    backgroundColor: Colors.grey[200],
         body: SafeArea(
           child: ListView(
             children: [
@@ -34,11 +43,18 @@ class _HomepageState extends State<Homepage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                         Builder(
+                          builder: (context) =>
                         IconButton(
-                          color: Colors.green,
-                          icon: const Icon(Icons.more_vert),
-                          onPressed: () {},
+                          
+                          icon: const Icon(Icons.menu),
+                          onPressed: (){
+                            Scaffold.of(context).openDrawer();
+                          }
                         ),
+                         
+                         ),
+                         
                         const CircleAvatar(
                           backgroundImage: AssetImage('assets/IMG_0934.jpg'),
                           radius: 20,
@@ -46,7 +62,24 @@ class _HomepageState extends State<Homepage> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20.0),
+                  
+
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20)
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Icon(Icons.search),
+                        Text('Search car to rent'),
+                          Icon(Icons.settings),
+                      ],
+                    )
+                  ),
                   Row(
                     children: [
                       Container(
@@ -256,10 +289,14 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ],
               )
+      
             ],
           ),
         ),
       ),
     );
+    
   }
 }
+
+

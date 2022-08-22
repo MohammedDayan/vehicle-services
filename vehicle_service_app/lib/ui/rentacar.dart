@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vehicle_service_app/ui/recentcars.dart';
 import 'package:vehicle_service_app/model/car.dart';
+import 'package:vehicle_service_app/ui/screens/makeorder.dart';
 
 class rentCar extends StatefulWidget {
   @override
@@ -9,12 +10,17 @@ class rentCar extends StatefulWidget {
 
 Widget _buildCarList(BuildContext context, Car recentimg) {
   return ListTile(
+    //textColor: Colors.red,
     title: Text(recentimg.name),
     leading: Image.asset(recentimg.imgurl),
     subtitle: Text(recentimg.descip),
     onTap: () {
-      print("whatsa app");
-    },
+       Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  const MyOrder()));
+  },
   );
 }
 
