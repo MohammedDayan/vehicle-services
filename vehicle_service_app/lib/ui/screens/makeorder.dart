@@ -4,6 +4,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:vehicle_service_app/config/constants.dart';
 import 'package:vehicle_service_app/ui/components/My_wrap.dart';
+import 'package:vehicle_service_app/ui/components/orderPrice.dart';
 import 'package:vehicle_service_app/ui/recentcars.dart';
 import 'package:vehicle_service_app/model/car.dart';
 
@@ -49,7 +50,7 @@ class MyOrder extends StatelessWidget {
                   Stack(
                     children: [
                       Container(
-                        height: size.height/2,
+                        height: size.height/1.85,
                         decoration: BoxDecoration(
                           color: Colors.grey[200],
                           
@@ -58,10 +59,10 @@ class MyOrder extends StatelessWidget {
                         ),
                       ),
                         Padding(
-                           padding: const EdgeInsets.only(top: 320.0),
+                           padding: const EdgeInsets.only(top: 370.0),
                             child: Container(    
-                              height: size.height/2,
-                              width: double.infinity,
+                              //height: size.height/3,
+                              width: size.width,
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 shape: BoxShape.rectangle,
@@ -72,22 +73,26 @@ class MyOrder extends StatelessWidget {
                               ),
                               
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 30, top: 10),
+                                  child:  Text(
                                     'Features',
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontFamily: 'OpenSans',
                                     ),
                                     ),
+                                  ),
+                                  
 
                                     SizedBox(
-                                      height: 20,
+                                      height: 10,
                                     ),
  
-                                  Row(
-                                children: [
-                                  
+                                Row(
+                                children: [                      
                                   WrapAround(
                                     myicon: IconButton(
                                       onPressed: (){}, 
@@ -114,13 +119,46 @@ class MyOrder extends StatelessWidget {
                                     info: 'Car speed',
                                     mynum: '300mph',
                                     ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 20),
+                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                 Myprice(currency: '\$', amount: '2500', dur: '/day'),
+
+                                 ElevatedButton(
+                                    child: const Text(
+                                      'Book this car',
+                                      // style: TextStyle(fontSize: 10),
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(15.0),
+                                        ),
+                                        primary:  kPrimaryColor,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 40, vertical: 20)),
+                                    onPressed: () {
+                                      
+                                    },
+                  ),
+                                  
+                                ],
+                              )
+                              )
+                              
+
 
                                 ],
                               ),
-                                ],
-                              ),
                               
-                             /*  */
+                             
                             ),
 
                             
@@ -129,7 +167,7 @@ class MyOrder extends StatelessWidget {
                   )
                 ]
       )
-            ]
+          ]
     )
         )
       )
