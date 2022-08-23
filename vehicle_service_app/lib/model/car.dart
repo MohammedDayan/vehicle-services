@@ -1,3 +1,5 @@
+import 'dart:core';
+
 class Car {
   String name;
   String imgurl;
@@ -9,4 +11,6 @@ class Car {
       required this.imgurl,
       required this.descip,
       required this.city});
+
+      
 }
