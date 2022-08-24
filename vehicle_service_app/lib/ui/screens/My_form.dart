@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_service_app/config/constants.dart';
 
 
 class OrderForm extends StatelessWidget {
@@ -20,14 +21,14 @@ class OrderForm extends StatelessWidget {
               AppBar(
                 leading: Icon(Icons.verified_user),
                 elevation: 0,
-                title: Text('Order Details'),
-                backgroundColor: Theme.of(context).accentColor,
+                title: Text('Booking Details'),
+                backgroundColor: kPrimaryColor,//Theme.of(context).accentColor,
                 centerTitle: true,
                 
               ),
 
                Padding(
-                padding: EdgeInsets.only(left: 16, right: 16, top: 16),
+                padding: EdgeInsets.only(left: 16, right: 16, top: 16,bottom: 20),
                 child: TextFormField(
                   /*initialValue: widget.user.fullName,
                   onSaved: (val) => widget.user.fullName = val,
@@ -43,7 +44,7 @@ class OrderForm extends StatelessWidget {
               ),
 
                Padding(
-                padding: EdgeInsets.only(left: 16, right: 16, bottom: 24),
+                padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
                 child: TextFormField(
                  /* initialValue: widget.user.email,
                   onSaved: (val) => widget.user.email = val,
@@ -59,48 +60,48 @@ class OrderForm extends StatelessWidget {
               ),
 
                 Padding(
-                padding: EdgeInsets.only(left: 16, right: 16, bottom: 24),
+                padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
                 child: TextFormField(
                  /* initialValue: widget.user.email,
                   onSaved: (val) => widget.user.email = val,
                   validator: (val) =>
                       val.contains('@') ? null : 'Email is invalid',*/
                   decoration: InputDecoration(
-                    labelText: 'Email Address',
-                    hintText: 'Enter your email',
-                    icon: Icon(Icons.email),
+                    labelText: 'Start Date',
+                    hintText: 'Enter your start date',
+                    icon: Icon(Icons.calendar_today),
                     isDense: true,
                   ),
                 ),
               ),
 
                 Padding(
-                padding: EdgeInsets.only(left: 16, right: 16, bottom: 24),
+                padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
                 child: TextFormField(
                  /* initialValue: widget.user.email,
                   onSaved: (val) => widget.user.email = val,
                   validator: (val) =>
                       val.contains('@') ? null : 'Email is invalid',*/
                   decoration: InputDecoration(
-                    labelText: 'Email Address',
-                    hintText: 'Enter your email',
-                    icon: Icon(Icons.email),
+                    labelText: 'Return Date',
+                    hintText: 'Enter date your return date',
+                    icon: Icon(Icons.calendar_month),
                     isDense: true,
                   ),
                 ),
               ),
 
                 Padding(
-                padding: EdgeInsets.only(left: 16, right: 16, bottom: 24),
+                padding: EdgeInsets.only(left: 16, right: 16, bottom: 10),
                 child: TextFormField(
                  /* initialValue: widget.user.email,
                   onSaved: (val) => widget.user.email = val,
                   validator: (val) =>
                       val.contains('@') ? null : 'Email is invalid',*/
                   decoration: InputDecoration(
-                    labelText: 'Email Address',
-                    hintText: 'Enter your email',
-                    icon: Icon(Icons.email),
+                    labelText: 'Pickup location',
+                    hintText: 'Enter your pickup location',
+                    icon: Icon(Icons.location_on),
                     isDense: true,
                   ),
                 ),

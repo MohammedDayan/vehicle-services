@@ -53,12 +53,17 @@ class MyOrder extends StatelessWidget {
                     children: [
                       Container(
                         height: size.height/1.85,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[200],
+                           decoration:  BoxDecoration(
+                            // color: Colors.green.withOpacity(0.5),
+                                image: DecorationImage(
+                              image: AssetImage('assets/MOB.jpg'),
+                              colorFilter: ColorFilter.mode(Colors.green, BlendMode.modulate,),
+                              fit: BoxFit.cover,
+                            ),),
+                            
                           
                           
-                          
-                        ),
+                        
                       ),
                         Padding(
                            padding: const EdgeInsets.only(top: 370.0),

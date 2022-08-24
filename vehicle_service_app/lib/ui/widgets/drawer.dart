@@ -67,7 +67,7 @@ class CustomDrawer extends StatelessWidget {
             leading: Icon(
               Icons.home,
             ),
-            title: const Text('Dashboard'),
+            title: const Text('Home'),
             onTap: () {
               Navigator.pop(context);
             },
@@ -77,7 +77,7 @@ class CustomDrawer extends StatelessWidget {
             leading: Icon(
               Icons.garage
             ),
-            title: const Text('Dashboard'),
+            title: const Text('Rent Car'),
             onTap: () {
               Navigator.pop(context);
             },
@@ -87,7 +87,7 @@ class CustomDrawer extends StatelessWidget {
             leading: Icon(
               Icons.inbox,
             ),
-            title: const Text('Dashboard'),
+            title: const Text('Messages'),
             onTap: () {
               Navigator.pop(context);
             },
@@ -97,7 +97,7 @@ class CustomDrawer extends StatelessWidget {
             leading: Icon(
               Icons.star
             ),
-            title: const Text('Dashboard'),
+            title: const Text('Starred'),
             onTap: () {
               Navigator.pop(context);
             },
@@ -105,9 +105,14 @@ class CustomDrawer extends StatelessWidget {
 
            ListTile(
             leading: Icon(
-              Icons.send
+              Icons.settings
             ),
-            title: const Text('Dashboard'),
+            title: const Text(
+              'Settings',
+              style: TextStyle(
+                fontSize: 18
+              ),
+            ),
             onTap: () {
               Navigator.pop(context);
             },
