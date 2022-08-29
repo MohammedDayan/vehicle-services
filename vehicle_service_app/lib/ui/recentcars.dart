@@ -7,22 +7,43 @@ List<Car> recentimg = [
       name: "Camry",
       imgurl: "assets/2.png",
       descip: " 2020 red",
-      city: "Kumasi"),
+      city: "Kumasi",
+      features: [],
+      currency: '',
+      amount: '',
+      dur: ''
+      ),
   Car(
       name: "Camry",
       imgurl: "assets/1.png",
       descip: "Toyota 2022 blue",
-      city: "Accra"),
+      city: "Accra",
+      features: [],
+      currency: '',
+      amount: '',
+      dur: ''
+      ),
+      
   Car(
       name: "Pickup",
       imgurl: "assets/3.jpg",
       descip: " Toyota 2016 white",
-      city: "Kumasi"),
+      city: "Kumasi",
+      features: [],
+      currency: '',
+      amount: '',
+      dur: '',
+      ),
   Car(
       name: "Navara ",
       imgurl: "assets/4.jpg",
       descip: " Nissan 2020 blue-black",
-      city: "Kumasi"),
+      city: "Kumasi",
+      features: [],
+      currency: '',
+      amount: '',
+      dur: '',
+      ),
 ];
 
 List<Widget> recentSlider = recentimg

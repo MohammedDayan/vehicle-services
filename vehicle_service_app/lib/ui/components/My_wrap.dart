@@ -9,7 +9,7 @@ class WrapAround extends StatelessWidget {
        }) 
       : super(key: key);
   final String info;
-  final Widget myicon;
+  final IconData myicon;
   final String mynum;
   @override
   Widget build(BuildContext context) {
@@ -17,51 +17,58 @@ class WrapAround extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 10.0,),
       child: Container(
-        width: MediaQuery.of(context).size.width / 4,
-         height: MediaQuery.of(context).size.height / 5,
+        // width: MediaQuery.of(context).size.width / 4,
+        //  height: MediaQuery.of(context).size.height / 5,
          decoration: BoxDecoration(
           color: Colors.blueGrey[200],
           borderRadius: BorderRadius.circular(20)
          ),
 
          child: Padding(
-          padding: const EdgeInsets.all(5),
+          padding: const EdgeInsets.only(top: 10, left:10, right: 10, bottom: 30 
+          ),
 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: 40,
-                height: 40,
+                width: 30,
+                height: 30,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white
                 ),
-                child: myicon,
+                child: Align(
+                   alignment: Alignment.center,
+                   child: Icon(
+                    myicon
+                   )),
                 
                 
               ),
-              
+               SizedBox(height: 5,),
               Text(
                 info,
                 textAlign: TextAlign.left,
                 style: const TextStyle(
                   fontFamily: 'OpenSans',
-                  fontSize: 15,
-                  letterSpacing: 1,
+                  fontSize: 12,
+                  
                  // fontWeight: FontWeight.bold,
                   color: Colors.black,
                   overflow: TextOverflow.clip
                 ),
               ),
 
+               SizedBox(height: 5,),
                Text(
                 mynum,
                 textAlign: TextAlign.left,
                 style: const TextStyle(
                   fontFamily: 'OpenSans',
-                  fontSize: 18,
-                  letterSpacing: 1,
+                  fontSize: 15,
+                 
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),

@@ -9,178 +9,235 @@ import 'package:vehicle_service_app/ui/recentcars.dart';
 import 'package:vehicle_service_app/model/car.dart';
 import 'package:vehicle_service_app/ui/screens/My_form.dart';
 import 'package:vehicle_service_app/ui/screens/OrderCar_screen.dart';
+import 'package:vehicle_service_app/ui/screens/login_screen.dart';
 
 
 
 
-class MyOrder extends StatelessWidget {
-  const MyOrder({Key? key}) : super(key: key);
+class MyOrder extends StatefulWidget {
+  const MyOrder({Key? key,required this.car}) : super(key: key);
+  final Car car;
 
+   @override
+  State<MyOrder> createState() => _MyOrderState();
+}
+
+class _MyOrderState extends State<MyOrder> {
   
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    
+    Orientation orientation =  MediaQuery.of(context).orientation;
+    if(orientation == Orientation.landscape){
+      print(orientation);
+    }
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+       backgroundColor: Colors.black,
         body: SizedBox(
+
           width: size.width,
           height: size.height,
-          child: ListView(
+          child: Stack(
             children: [
-              Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(5.0),
-                    color: Colors.grey[200],
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                         
-                        IconButton(
-                          icon: const Icon(CupertinoIcons.arrow_left),
-                          onPressed: (){
-                            Navigator.pop(context);
-                          }
-                        ),
-                    
-                         
-                      ]
+              
+              Container(
+                height: size.height/1.7,
+                width: size.width,
+                   decoration:  BoxDecoration(
+                    //  color: Colors.black,
+                     /* image: DecorationImage(
+                      image: AssetImage('assets/images/login.jpg'),
+                     // colorFilter: ColorFilter.mode(Colors.green, BlendMode.modulate,),
+                      fit: BoxFit.cover,
+                    ),*/
                     ),
-                  ),
-
-                  Stack(
-                    children: [
-                      Container(
-                        height: size.height/1.85,
-                           decoration:  BoxDecoration(
-                            // color: Colors.green.withOpacity(0.5),
-                                image: DecorationImage(
-                              image: AssetImage('assets/MOB.jpg'),
-                              colorFilter: ColorFilter.mode(Colors.green, BlendMode.modulate,),
-                              fit: BoxFit.cover,
-                            ),),
-                            
-                          
-                          
-                        
+              
+                    child: Hero(tag: widget.car.imgurl,
+                    child: Image.asset(widget.car.imgurl))                  
+                  
+                
+              ),
+              
+                Positioned(
+                  bottom: 0,
+                  child: Padding(
+                    padding:  orientation == Orientation.landscape? const EdgeInsets.all(8.0): const EdgeInsets.all(0),
+                    child: Container(    
+                      height: orientation == Orientation.landscape?
+                      120
+                      :null,
+                      width: size.width,
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(50),
+                          topRight: Radius.circular(50),
+                        ),
                       ),
-                        Padding(
-                           padding: const EdgeInsets.only(top: 370.0),
-                            child: Container(    
-                              //height: size.height/3,
-                              width: size.width,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(50),
-                                  topRight: Radius.circular(50),
-                                ),
+                      
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 30, top: 10),
+                            child:  Text(
+                              'Features',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: 'OpenSans',
                               ),
-                              
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 30, top: 10),
-                                  child:  Text(
-                                    'Features',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontFamily: 'OpenSans',
-                                    ),
-                                    ),
-                                  ),
-                                  
+                              ),
+                            ),
+                            
+                                      
+                              SizedBox(
+                                height: 10,
+                              ),
 
-                                    SizedBox(
-                                      height: 10,
-                                    ),
- 
-                                Row(
+                          SingleChildScrollView(
+                            physics: BouncingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            child: 
+                            
+                            orientation == Orientation.portrait?
+                            Row(
+                                  mainAxisAlignment: orientation == Orientation.landscape? MainAxisAlignment.spaceAround:MainAxisAlignment.start,
+                                  mainAxisSize:  MainAxisSize.max,
                                 children: [                      
                                   WrapAround(
-                                    myicon: IconButton(
-                                      onPressed: (){}, 
-                                      icon: Icon(Icons.garage)
-                                      ),
+                                    myicon: Icons.garage,
+                                      
                                     info: 'Car speed',
                                     mynum: '300mph',
                                     ),
-
+                                              
                                      WrapAround(
-                                    myicon: IconButton(
-                                      onPressed: (){}, 
-                                      icon: Icon(Icons.garage)
-                                      ),
+                                     myicon: Icons.garage,
                                     info: 'Car speed',
                                     mynum: '300mph',
                                     ),
-
+                                              
                                      WrapAround(
-                                    myicon: IconButton(
-                                      onPressed: (){}, 
-                                      icon: Icon(Icons.garage)
-                                      ),
+                                     myicon: Icons.garage,
+                                    info: 'Car speed',
+                                    mynum: '300mph',
+                                    ),
+                                     WrapAround(
+                                     myicon: Icons.garage,
+                                    info: 'Car speed',
+                                    mynum: '300mph',
+                                    ),
+                                     WrapAround(
+                                     myicon: Icons.garage,
                                     info: 'Car speed',
                                     mynum: '300mph',
                                     ),
                                 ],
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
+                                                  )
+                            :
+                            SizedBox(
+                              width: 
                               
-                              Container(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
-                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                 Myprice(currency: '\$', amount: '2500', dur: '/day'),
-
-                                 ElevatedButton(
-                                    child: const Text(
-                                      'Book this car',
-                                      // style: TextStyle(fontSize: 10),
+                              size.width,
+                              child: Padding(
+                                padding: orientation == Orientation.landscape? const EdgeInsets.symmetric(horizontal: 60): const EdgeInsets.symmetric(horizontal: 0),
+                                child: Row(
+                                  mainAxisAlignment: orientation == Orientation.landscape? MainAxisAlignment.spaceAround:MainAxisAlignment.start,
+                                  mainAxisSize:  MainAxisSize.max,
+                                children: [                      
+                                  WrapAround(
+                                    myicon: Icons.garage,
+                                      
+                                    info: 'Car speed',
+                                    mynum: '300mph',
                                     ),
-                                    style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(15.0),
-                                        ),
-                                        primary:  kPrimaryColor,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 40, vertical: 20)),
-                                    onPressed: () {
-                                       Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => const OrderCarScreen(),
-                                            )
-                                            );
-                                    },
-                  ),
-                                  
+                                              
+                                     WrapAround(
+                                     myicon: Icons.garage,
+                                    info: 'Car speed',
+                                    mynum: '300mph',
+                                    ),
+                                              
+                                     WrapAround(
+                                     myicon: Icons.garage,
+                                    info: 'Car speed',
+                                    mynum: '300mph',
+                                    ),
+                                     WrapAround(
+                                     myicon: Icons.garage,
+                                    info: 'Car speed',
+                                    mynum: '300mph',
+                                    ),
+                                     WrapAround(
+                                     myicon: Icons.garage,
+                                    info: 'Car speed',
+                                    mynum: '300mph',
+                                    ),
                                 ],
-                              )
-                              )
-                              
-
-
-                                ],
+                                                  ),
                               ),
-                              
-                             
                             ),
-
+                          ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))
+                          ),
+                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                           Myprice(currency: '\$', amount: '2500', dur: '/day'),
+                                      
+                           ElevatedButton(
+                              child: const Text(
+                                'Book this car',
+                                // style: TextStyle(fontSize: 10),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                  ),
+                                  primary:  kPrimaryColor,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 40, vertical: 20)),
+                              onPressed: () {
+                                 Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const OrderCarScreen(),
+                                      )
+                                      );
+                              },
+                              ),
                             
+                          ],
                         )
-                    ],
-                  )
-                ]
-      )
-          ]
-    )
+                        ),
+                        
+                                      
+                                      
+                          ],
+                        ),
+                      ),
+                      
+                     
+                    ),
+                  ),
+                ),
+                Positioned(
+                top: 10,
+                left: 3,
+                child: IconButton(
+                onPressed: ()=> Navigator.pop(context), icon: Icon(Icons.arrow_back,color: Colors.white,))),
+            ],
+          )
         )
       )
     );
