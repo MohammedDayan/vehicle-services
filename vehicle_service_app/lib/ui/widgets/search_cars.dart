@@ -28,6 +28,11 @@ class SearchCars extends SearchDelegate<Car>{
   @override
   Widget buildSuggestions(BuildContext context) {
     List<Car> suggestions = recentimg.where((element) => element.name.toLowerCase().contains(query.toLowerCase())).toList();
+    
+    if(query.isEmpty)
+    {
+    return Container();
+    }
     return ListView.builder(
       itemCount: suggestions.length,
       itemBuilder:(_,i)=>ListTile(
