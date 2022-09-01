@@ -4,9 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:vehicle_service_app/ui/recentcars.dart';
 import 'package:vehicle_service_app/ui/rentacar.dart';
+<<<<<<< Updated upstream
 import 'package:vehicle_service_app/ui/widgets/drawer.dart';
 import 'package:vehicle_service_app/ui/widgets/search_cars.dart';
 
+=======
+import 'package:vehicle_service_app/ui/components/info_updatepopup.dart';
+import 'package:vehicle_service_app/ui/screens/updateprofile.dart';
+>>>>>>> Stashed changes
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -17,9 +22,29 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  @override
   final user = FirebaseAuth.instance.currentUser!;
+<<<<<<< Updated upstream
   
   
+=======
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+
+    {
+      WidgetsBinding.instance?.addPostFrameCallback((_) => {
+            if (user.photoURL == null && user.displayName == null)
+              {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => updateProfile()))
+              }
+          });
+    }
+  }
+
+>>>>>>> Stashed changes
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -53,11 +78,19 @@ class _HomepageState extends State<Homepage> {
                             Scaffold.of(context).openDrawer();
                           }
                         ),
+<<<<<<< Updated upstream
                          
                          ),
                          
                         const CircleAvatar(
                           backgroundImage: AssetImage('assets/IMG_0934.jpg'),
+=======
+                        CircleAvatar(
+                          backgroundImage: user.photoURL != null
+                              ? NetworkImage(user.photoURL!)
+                              : const NetworkImage(
+                                  'https://cdn2.iconfinder.com/data/icons/action-states-vol-4-flat/48/Action___States_-_Vol._4-10-512.png'),
+>>>>>>> Stashed changes
                           radius: 20,
                         )
                       ],
@@ -88,9 +121,11 @@ class _HomepageState extends State<Homepage> {
                     children: [
                       Container(
                         padding: const EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                        child: const Text(
-                          'Hello Dan ',
-                          style: TextStyle(
+                        child: Text(
+                          user.displayName != null
+                              ? 'Hello ' + user.displayName!
+                              : "hello User",
+                          style: const TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),

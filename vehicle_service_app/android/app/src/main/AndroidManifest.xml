@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.vehicle_service_app">
+    <uses-permission android:name = "android.permissions.READ_EXTERNAL_STORAGE"/>
    <application
         android:label="vehicle_service_app"
         android:name="${applicationName}"
