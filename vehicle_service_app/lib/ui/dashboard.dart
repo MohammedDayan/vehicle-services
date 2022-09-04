@@ -4,18 +4,13 @@ import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:vehicle_service_app/ui/recentcars.dart';
 import 'package:vehicle_service_app/ui/rentacar.dart';
-<<<<<<< Updated upstream
+import 'package:vehicle_service_app/ui/screens/mycars.dart';
 import 'package:vehicle_service_app/ui/widgets/drawer.dart';
 import 'package:vehicle_service_app/ui/widgets/search_cars.dart';
-
-=======
-import 'package:vehicle_service_app/ui/components/info_updatepopup.dart';
 import 'package:vehicle_service_app/ui/screens/updateprofile.dart';
->>>>>>> Stashed changes
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
-
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -24,10 +19,7 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   @override
   final user = FirebaseAuth.instance.currentUser!;
-<<<<<<< Updated upstream
-  
-  
-=======
+
   void initState() {
     // TODO: implement initState
 
@@ -44,21 +36,17 @@ class _HomepageState extends State<Homepage> {
     }
   }
 
->>>>>>> Stashed changes
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.white, // status bar color
-      statusBarIconBrightness: Brightness.dark
-    ));
-   
-    
+        statusBarColor: Colors.white, // status bar color
+        statusBarIconBrightness: Brightness.dark));
+
     return Container(
       color: Colors.white,
       child: Scaffold(
         drawer: CustomDrawer(),
-        
-    backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.grey[200],
         body: SafeArea(
           child: ListView(
             children: [
@@ -69,53 +57,43 @@ class _HomepageState extends State<Homepage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                         Builder(
-                          builder: (context) =>
-                        IconButton(
-                          
-                          icon: const Icon(Icons.menu),
-                          onPressed: (){
-                            Scaffold.of(context).openDrawer();
-                          }
+                        Builder(
+                          builder: (context) => IconButton(
+                              icon: const Icon(Icons.menu),
+                              onPressed: () {
+                                Scaffold.of(context).openDrawer();
+                              }),
                         ),
-<<<<<<< Updated upstream
-                         
-                         ),
-                         
-                        const CircleAvatar(
-                          backgroundImage: AssetImage('assets/IMG_0934.jpg'),
-=======
                         CircleAvatar(
                           backgroundImage: user.photoURL != null
                               ? NetworkImage(user.photoURL!)
                               : const NetworkImage(
                                   'https://cdn2.iconfinder.com/data/icons/action-states-vol-4-flat/48/Action___States_-_Vol._4-10-512.png'),
->>>>>>> Stashed changes
                           radius: 20,
                         )
                       ],
                     ),
                   ),
-                  
-
                   GestureDetector(
-                    onTap: ()=>showSearch(context: context, delegate: SearchCars()),
+                    onTap: () =>
+                        showSearch(context: context, delegate: SearchCars()),
                     child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20)
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(Icons.search),
-                          Text('Search car to rent'),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        margin:
+                            EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Icon(Icons.search),
+                            Text('Search car to rent'),
                             Icon(Icons.settings),
-                        ],
-                      ) //search 
-                    ),
+                          ],
+                        ) //search
+                        ),
                   ),
                   Row(
                     children: [
@@ -174,7 +152,7 @@ class _HomepageState extends State<Homepage> {
                   InkWell(
                     borderRadius: BorderRadius.circular(20.0),
                     onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => rentCar())),
+                        MaterialPageRoute(builder: (context) => myCars())),
                     child: Ink(
                       height: 150.0,
                       width: 150.0,
@@ -218,7 +196,7 @@ class _HomepageState extends State<Homepage> {
                   InkWell(
                     borderRadius: BorderRadius.circular(20.0),
                     onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => rentCar())),
+                        MaterialPageRoute(builder: (context) => myCars())),
                     child: Ink(
                       height: 150.0,
                       width: 150.0,
@@ -328,14 +306,10 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ],
               )
-      
             ],
           ),
         ),
       ),
     );
-    
   }
 }
-
-

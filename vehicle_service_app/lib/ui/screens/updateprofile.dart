@@ -58,13 +58,14 @@ class _updateProfileState extends State<updateProfile> {
     Future<void> adduser() async {
       print("watch out !!!!");
       print(loggeduser.uid);
+      print(name.text);
       await users.add({
         'id': loggeduser.uid,
-        'name': name,
-        'phone': phone,
-        'nationalid': nationalID,
-        'profileImg': urlDownload,
-      });
+        'name': name.text,
+        'phone': phone.text,
+        'nationalid': nationalID.text,
+        // 'profileImg': urlDownload,
+      }).then((value) => print('data uploaded to firebase database'));
     }
 
     void profileUpdate() {
@@ -95,9 +96,11 @@ class _updateProfileState extends State<updateProfile> {
               child: Center(
                   child: CircleAvatar(
                 backgroundImage: _image != null
-                    ? FileImage(_image!) as ImageProvider
-                    : const NetworkImage(
-                        'https://cdn2.iconfinder.com/data/icons/action-states-vol-4-flat/48/Action___States_-_Vol._4-10-512.png'),
+                    ? FileImage(_image!)
+                    : loggeduser.photoURL != null
+                        ? NetworkImage(loggeduser.photoURL!) as ImageProvider
+                        : const NetworkImage(
+                            'https://cdn2.iconfinder.com/data/icons/action-states-vol-4-flat/48/Action___States_-_Vol._4-10-512.png'),
                 // Image.file(File(_image?.path))
                 radius: 60,
               )),
@@ -131,11 +134,11 @@ class _updateProfileState extends State<updateProfile> {
                 onPressed: () {
                   //validate
                   //profile image upload
-                  upload();
+                  //
                   //sending data to db
                   adduser();
                   //
-                  profileUpdate();
+                  // profileUpdate();
 
                   Navigator.pop(context);
                 },
