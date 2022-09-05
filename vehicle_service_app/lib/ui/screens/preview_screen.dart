@@ -115,24 +115,24 @@ class _MyOrderState extends State<MyOrder> {
                                               
                                      WrapAround(
                                      myicon: Icons.garage,
-                                    info: 'Car speed',
-                                    mynum: '300mph',
+                                    info: 'Engine type',
+                                    mynum: 'V12',
                                     ),
                                               
                                      WrapAround(
                                      myicon: Icons.garage,
-                                    info: 'Car speed',
-                                    mynum: '300mph',
+                                    info: 'Mileage',
+                                    mynum: '9.8kmpl',
                                     ),
                                      WrapAround(
                                      myicon: Icons.garage,
-                                    info: 'Car speed',
-                                    mynum: '300mph',
+                                    info: 'Max Torque',
+                                    mynum: '900Nm',
                                     ),
                                      WrapAround(
                                      myicon: Icons.garage,
-                                    info: 'Car speed',
-                                    mynum: '300mph',
+                                    info: 'Tranmission type',
+                                    mynum: 'Manual',
                                     ),
                                 ],
                                                   )
