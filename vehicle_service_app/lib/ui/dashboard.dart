@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:vehicle_service_app/ui/recentcars.dart';
 import 'package:vehicle_service_app/ui/rentacar.dart';
+import 'package:vehicle_service_app/ui/screens/available_cars.dart';
 import 'package:vehicle_service_app/ui/screens/mycars.dart';
 import 'package:vehicle_service_app/ui/widgets/drawer.dart';
 import 'package:vehicle_service_app/ui/widgets/search_cars.dart';
@@ -196,7 +197,7 @@ class _HomepageState extends State<Homepage> {
                   InkWell(
                     borderRadius: BorderRadius.circular(20.0),
                     onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => myCars())),
+                        MaterialPageRoute(builder: (context) => availCar())),
                     child: Ink(
                       height: 150.0,
                       width: 150.0,

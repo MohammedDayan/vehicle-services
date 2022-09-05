@@ -20,7 +20,7 @@ class WrapAround extends StatelessWidget {
         // width: MediaQuery.of(context).size.width / 4,
         //  height: MediaQuery.of(context).size.height / 5,
          decoration: BoxDecoration(
-          color: Colors.blueGrey[200],
+          color: Color.fromARGB(255, 230, 213, 165).withOpacity(0.9),
           borderRadius: BorderRadius.circular(20)
          ),
 
