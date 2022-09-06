@@ -74,6 +74,38 @@ class OrderForm extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                  Padding(
+                  padding: EdgeInsets.only(left: 16, right: 16, bottom: 10),
+                  child: TextFormField(
+                   /* initialValue: widget.user.email,
+                    onSaved: (val) => widget.user.email = val,
+                    validator: (val) =>
+                        val.contains('@') ? null : 'Email is invalid',*/
+                    decoration: InputDecoration(
+                      labelText: 'National ID No',
+                      hintText: 'Enter your National ID No',
+                      icon: Icon(Icons.location_city),
+                      isDense: true,
+                    ),
+                  ),
+                ),
+
+                  Padding(
+                  padding: EdgeInsets.only(left: 16, right: 16, bottom: 10),
+                  child: TextFormField(
+                   /* initialValue: widget.user.email,
+                    onSaved: (val) => widget.user.email = val,
+                    validator: (val) =>
+                        val.contains('@') ? null : 'Email is invalid',*/
+                    decoration: InputDecoration(
+                      labelText: 'GPS Address',
+                      hintText: 'Enter your GPS Address',
+                      icon: Icon(Icons.location_on),
+                      isDense: true,
+                    ),
+                  ),
+                ),
         
                   Padding(
                   padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
@@ -121,10 +153,7 @@ class OrderForm extends StatelessWidget {
                       isDense: true,
                     ),
                   ),
-                ),
-        
-        
-        
+                ),        
               ],
             ),
           ),

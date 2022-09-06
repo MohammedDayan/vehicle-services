@@ -236,6 +236,31 @@ class _MyOrderState extends State<MyOrder> {
                 left: 3,
                 child: IconButton(
                 onPressed: ()=> Navigator.pop(context), icon: Icon(Icons.arrow_back,color: Colors.white,))),
+
+                Positioned(
+                top: 370,
+                left: 10,
+                child: Column(
+                 
+                  children: [
+                    Text(
+                    widget.car.name,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                    ),
+                    
+                  ),
+
+                  Text(
+                    widget.car.descip,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  )
+                  ],
+                ))
             ],
           )
         )

@@ -32,42 +32,13 @@ class _OrderCarScreenState extends State<OrderCarScreen> {
             decoration:  BoxDecoration(
              // color: Colors.green.withOpacity(0.5),
                 image: DecorationImage(
-              image: AssetImage('assets/MOB.jpg'),
+              image: AssetImage('assets/jaguar.jpg'),
               colorFilter: ColorFilter.mode(Colors.blueGrey, BlendMode.modulate,),
               fit: BoxFit.cover,
             ),),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Row(
-                //         mainAxisAlignment: MainAxisAlignment.start,
-                //         children: [
-                //            Builder(
-                //             builder: (context) =>
-                //           IconButton(
-                //             color: Colors.white,
-                //             icon: const Icon(Icons.arrow_back),
-                //             onPressed: (){
-                //               Navigator.pop(context);
-                //             }
-                //           ),
-                           
-                //            ),
-                           
-                //            Padding(
-                //             padding: EdgeInsets.symmetric(horizontal: 50),
-                //             child: Text(
-                //             'Make an Order',
-                //             style: TextStyle(
-                //               color: Colors.white,
-                //               fontSize: 20,
-                //             ),
-                //           ),
-                //            )
-                         
-                //         ],
-                //       ),
-              
+               // mainAxisAlignment: MainAxisAlignment.center,
+              children: [   
                 OrderForm(),
                  
                  Padding(

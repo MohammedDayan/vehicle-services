@@ -45,14 +45,18 @@ Widget _buildCarList(BuildContext context, Car recentimg) {
                                   children: [
                                     Positioned(
                                       bottom: 0,
-                                      top: -35,
+                                      top: -45,
                                       left: 10,
                                       child: Center(
-                                        child: Image.asset(
-                                          recentimg.imgurl,
-                                          width: size.width/1.3,
-                                          height: size.height/1.9,
+                                        child: Container(
+                                          //color: Colors.red,
+                                          height: size.height/6,
+                                          child: Image.asset(
+                                            recentimg.imgurl,
+                                            width: size.width/1.2,
+                                            height: size.height/1.9,
 
+                                          ),
                                         )
                                       ),
                                     ),
@@ -80,11 +84,34 @@ Widget _buildCarList(BuildContext context, Car recentimg) {
                                     Positioned(
                                       bottom: 0,
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.only(right: 170.0, left: 15),
-                                            child: Text("500hq"),
+                                            padding: const EdgeInsets.only(right: 90.0),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Icon(Icons.garage),
+                                                     Text("500hq"),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.garage,
+                                                      //color: Colors.white,
+                                                    ),
+                                                     Text("500hq"),
+                                                  ],
+                                                ),
+
+                                              ],
+                                            ),
                                           ),
 
                                           Myprice(

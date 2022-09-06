@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vehicle_service_app/config/constants.dart';
+import 'package:vehicle_service_app/ui/screens/lessor_info_screen.dart';
+import 'package:vehicle_service_app/ui/screens/updateprofile.dart';
 import 'package:vehicle_service_app/ui/widgets/rounded_input_field.dart';
 
 class myCars extends StatefulWidget {
@@ -38,29 +40,78 @@ class _myCarsState extends State<myCars> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.grey[200],
             foregroundColor: Colors.black,
+            elevation: 0,
             title: Text(
               'Add Car',
               ),
             centerTitle: true,
             bottom: TabBar(
               unselectedLabelColor: kPrimaryColor,
+              indicatorSize: TabBarIndicatorSize.label,
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
                 color: kPrimaryColor,
               ),
               tabs: [
-              Tab(text: 'General',),
-              Tab(text: 'Specs',)
+                Tab(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    border: Border.all(
+                      color: kPrimaryColor,
+                      width: 1
+                    )
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text('LESSOR'),
+                  ),
+                ),
+              ),
+                Tab(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                        color: kPrimaryColor,
+                        width: 1
+                      )
+                    ),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text('GENERAL'),
+                    ),
+                  ),
+                ),
+
+                Tab(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                        color: kPrimaryColor,
+                        width: 1
+                      )
+                    ),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text('SPECS'),
+                    ),
+                  ),
+                ),
+              
             ]),
           ),
           
           body: TabBarView(
             children: [
+              lessorInfo(),
+
               ListView(
                 children: [
                   Form(
@@ -134,7 +185,7 @@ class _myCarsState extends State<myCars> {
                           ),
                         ),
                       ),
-                      ElevatedButton(onPressed: () {}, child: const Text("Add"))
+                     // ElevatedButton(onPressed: () {}, child: const Text("Add"))
                     ]),
                   ),
                 ],
