@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vehicle_service_app/config/constants.dart';
+import 'package:vehicle_service_app/ui/screens/My_form.dart';
 import 'package:vehicle_service_app/ui/screens/lessor_info_screen.dart';
+import 'package:vehicle_service_app/ui/screens/specs_info_screen.dart';
 import 'package:vehicle_service_app/ui/screens/updateprofile.dart';
 import 'package:vehicle_service_app/ui/widgets/rounded_input_field.dart';
 
@@ -193,17 +195,18 @@ class _myCarsState extends State<myCars> {
 
               ListView(
                 children: [
-                   Column(
-                   children: [
-                     RoundedInputField(
-                        controller: model,
-                        icon: Icons.label,
-                        hintText: "Model",
-                     ),
-                   ],
-                   ),
-                ]
-                
+                  Container(
+                    decoration:  BoxDecoration(
+                    // color: Colors.green.withOpacity(0.5),
+                        image: DecorationImage(
+                      image: AssetImage('assets/jaguar.jpg'),
+                      colorFilter: ColorFilter.mode(Colors.blueGrey, BlendMode.modulate,),
+                      fit: BoxFit.cover,
+                    ),
+                    ),
+                      child: SpecsForm(),
+                    ),
+                ],  
                  )
 
 

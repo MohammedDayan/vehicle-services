@@ -48,18 +48,18 @@ List<Car> recentimg = [
 
 List<Widget> recentSlider = recentimg
     .map((item) => Container(
-          margin: const EdgeInsets.all(5.0),
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(5.0)),
-            child: Stack(
-              children: [
-                Image.asset(item.imgurl),
-                Positioned(
-                    child: Container(
-                  child: Text(item.name),
-                ))
-              ],
-            ),
-          ),
-        ))
-    .toList();
+      margin: const EdgeInsets.all(5.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+        child: Stack(
+          children: [
+            Image.asset(item.imgurl),
+            Positioned(
+                child: Container(
+              child: Text(item.name),
+            ))
+          ],
+        ),
+      ),
+    ))
+.toList();

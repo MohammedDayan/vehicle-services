@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vehicle_service_app/model/car.dart';
 import 'package:vehicle_service_app/ui/recentcars.dart';
+import 'package:vehicle_service_app/ui/screens/preview_screen.dart';
 
 class SearchCars extends SearchDelegate<Car>{
   @override
@@ -39,6 +40,7 @@ class SearchCars extends SearchDelegate<Car>{
         leading: Image.asset(suggestions[i].imgurl),
         title: Text(suggestions[i].name),
         subtitle: Text(suggestions[i].descip),
+       
       )
       );
   }

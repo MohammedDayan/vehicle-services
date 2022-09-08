@@ -61,14 +61,21 @@ Widget _buildCarList(BuildContext context, Car recentimg) {
                                       ),
                                     ),
                                     Positioned(
-                                      bottom: 30.0,
+                                      bottom: 32.0,
                                       left: 5.0,
                                       right: 0.0,
                                       child: Container(
+                                        
                                         alignment:
                                             AlignmentDirectional.bottomStart,
                                         margin: EdgeInsets.all(5.0),
                                         child: Container(
+                                          width: size.width,
+                                          decoration: BoxDecoration(
+                                            border: Border(
+                                              bottom: BorderSide( color: Colors.blueGrey.withOpacity(0.2))
+                                            ),
+                                          ),
                                           child: Text(
                                             recentimg.name,
                                             style: const TextStyle(
@@ -87,7 +94,7 @@ Widget _buildCarList(BuildContext context, Car recentimg) {
                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Padding(
-                                            padding: const EdgeInsets.only(right: 90.0),
+                                            padding: const EdgeInsets.only(right: 80.0, left: 10, bottom: 6),
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
@@ -114,10 +121,13 @@ Widget _buildCarList(BuildContext context, Car recentimg) {
                                             ),
                                           ),
 
-                                          Myprice(
-                                            currency: '\$', 
-                                            amount: '2500', 
-                                            dur: '/day')
+                                          Padding(
+                                            padding: const EdgeInsets.only(bottom: 8),
+                                            child: Myprice(
+                                              currency: '\$', 
+                                              amount: '2500', 
+                                              dur: '/day'),
+                                          )
                                         ],
                                       ),
                                     ),
