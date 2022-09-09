@@ -39,6 +39,7 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.white, // status bar color
         statusBarIconBrightness: Brightness.dark));
@@ -136,11 +137,25 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                   ),
-                  CarouselSlider(
-                    options: CarouselOptions(
-                      autoPlay: true,
+                  Container(
+                    height: size.height/3,
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    decoration: BoxDecoration(
+                     // border: Border(
+                        //left: BorderSide(width: 1, color: Colors.red),
+                        //right: BorderSide(width: 1, color: Colors.red)
+                      //),
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.blueGrey.withOpacity(0.5),
+                      //shape: BoxShape.rectangle
                     ),
-                    items: recentSlider,
+                    child: CarouselSlider(
+                      options: CarouselOptions(
+                        autoPlay: true,
+                      ),
+                      items: recentSlider,
+                    ),
                   )
                 ],
               ),
