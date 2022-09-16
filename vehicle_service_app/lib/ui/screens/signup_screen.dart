@@ -78,13 +78,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               RoundedButton(
                                   text: 'REGISTER',
                                   press: () async {
-                                    print("this is the pSSWORD " +
-                                        _password.text);
                                     bool successful = await register(
                                         _email.text, _password.text);
                                     if (successful) {
-                                      const snackbar =
-                                          SnackBar(content: Text("successful"));
+                                      const snackbar = SnackBar(
+                                          content: Text(
+                                              "Account Creation successful"));
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(snackbar);
                                       Navigator.push(

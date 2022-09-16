@@ -14,8 +14,9 @@ import 'package:vehicle_service_app/main.dart';
 Future<void> main() async {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    bool isLoggedin = FirebaseAuth.instance.currentUser != null;
-    await tester.pumpWidget(MyApp(isLoggedin));
+
+    // bool isLoggedin = FirebaseAuth.instance.currentUser != null;
+    // await tester.pumpWidget(MyApp(isLoggedin));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

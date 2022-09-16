@@ -3,8 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vehicle_service_app/config/constants.dart';
+import 'package:vehicle_service_app/model/car.dart';
+import 'package:vehicle_service_app/ui/recentcars.dart';
 import 'package:vehicle_service_app/ui/screens/My_form.dart';
 import 'package:vehicle_service_app/ui/screens/lessor_info_screen.dart';
+import 'package:vehicle_service_app/ui/screens/manage_car_screen.dart';
 import 'package:vehicle_service_app/ui/screens/specs_info_screen.dart';
 import 'package:vehicle_service_app/ui/screens/updateprofile.dart';
 import 'package:vehicle_service_app/ui/widgets/rounded_input_field.dart';
@@ -16,13 +19,25 @@ class myCars extends StatefulWidget {
   State<myCars> createState() => _myCarsState();
 }
 
-class _myCarsState extends State<myCars> {
+class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
+  late final _tabController = TabController(length: 2, vsync: this);
+
   final _formKey = GlobalKey<FormState>();
   final model = TextEditingController();
   final brand = TextEditingController();
   final insurance_no = TextEditingController();
-  final rate = TextEditingController();
+  final vin_no = TextEditingController();
   final location = TextEditingController();
+  final description = TextEditingController();
+  final speed = TextEditingController();
+  final enginType = TextEditingController();
+  final mileage = TextEditingController();
+  final power = TextEditingController();
+  final tankCapacity = TextEditingController();
+  final fuelLevel = TextEditingController();
+  final amount = TextEditingController();
+  final currency = TextEditingController();
+  final duration = TextEditingController();
 
   final Vehicle_no = TextEditingController();
   File? _image;
@@ -42,7 +57,7 @@ class _myCarsState extends State<myCars> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: DefaultTabController(
-        length: 3,
+        length: 2,
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.grey[200],
@@ -50,92 +65,56 @@ class _myCarsState extends State<myCars> {
             elevation: 0,
             title: Text(
               'Add Car',
-              ),
+            ),
             centerTitle: true,
             bottom: TabBar(
-              unselectedLabelColor: kPrimaryColor,
-              indicatorSize: TabBarIndicatorSize.label,
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: kPrimaryColor,
-              ),
-              tabs: [
-                Tab(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    border: Border.all(
-                      color: kPrimaryColor,
-                      width: 1
-                    )
-                  ),
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text('LESSOR'),
-                  ),
+                controller: _tabController,
+                unselectedLabelColor: kPrimaryColor,
+                indicatorSize: TabBarIndicatorSize.label,
+                indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: kPrimaryColor,
                 ),
-              ),
-                Tab(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                        color: kPrimaryColor,
-                        width: 1
-                      )
-                    ),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text('GENERAL'),
+                tabs: [
+                  Tab(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(color: kPrimaryColor, width: 1)),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text('GENERAL'),
+                      ),
                     ),
                   ),
-                ),
-
-                Tab(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                        color: kPrimaryColor,
-                        width: 1
-                      )
-                    ),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text('SPECS'),
+                  Tab(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(color: kPrimaryColor, width: 1)),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text('SPECS'),
+                      ),
                     ),
                   ),
-                ),
-              
-            ]),
+                ]),
           ),
-          
           body: TabBarView(
+            controller: _tabController,
             children: [
-              lessorInfo(),
-
               ListView(
                 children: [
                   Form(
                     key: _formKey,
                     child: Column(children: [
                       const SizedBox(
-                        height: 10.0,
-                      ),
-                     /* Container(
-                        child: const Text(
-                          'Add Car',
-                          style:
-                              TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-                        ),
-                      ),*/
-                      const SizedBox(
-                        height: 10.0,
+                        height: 20.0,
                       ),
                       RoundedInputField(
                         controller: model,
                         icon: Icons.label,
-                        hintText: "Model",
+                        hintText: "Name/Model",
                       ),
                       RoundedInputField(
                         controller: brand,
@@ -153,7 +132,12 @@ class _myCarsState extends State<myCars> {
                         hintText: "Insurance No",
                       ),
                       RoundedInputField(
-                        controller: rate,
+                        controller: vin_no,
+                        icon: Icons.numbers,
+                        hintText: "VIN / Chassis no",
+                      ),
+                      RoundedInputField(
+                        controller: amount,
                         icon: Icons.attach_money,
                         hintText: "Hourly Rate",
                       ),
@@ -165,52 +149,248 @@ class _myCarsState extends State<myCars> {
                       SizedBox(
                         height: 30.0,
                       ),
-                      Text("input an image of the car"),
+                      Text("Tap to add an image of the car"),
                       InkWell(
                         onTap: () {
                           _openimagePicker();
                         },
                         child: Center(
-                          child: Container(
-                            height: 100.0,
-                            width: 100.0,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              image: DecorationImage(
-                                image: _image != null
-                                    ? FileImage(_image!) as ImageProvider
-                                    : const NetworkImage(
-                                        'https://static.thenounproject.com/png/54657-200.png'),
-                                // Image.file(File(_image?.path))
-                              ),
-                            ),
+                          child: ClipRect(
+                            child: Builder(builder: (context) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  image: DecorationImage(
+                                    image: _image != null
+                                        ? Image.network(_image!.path)
+                                            as ImageProvider
+                                        : const NetworkImage(
+                                            'https://static.thenounproject.com/png/54657-200.png'),
+                                    // Image.file(File(_image?.path))
+                                  ),
+                                ),
+                              );
+                            }),
                           ),
                         ),
                       ),
-                     // ElevatedButton(onPressed: () {}, child: const Text("Add"))
+                      Container(
+                        height: 80,
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        margin: const EdgeInsets.symmetric(vertical: 10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 5),
+                        child: TextFormField(
+                          controller: description,
+                          expands: true,
+                          maxLines: null,
+                          minLines: null,
+                          decoration: const InputDecoration(
+                            icon: Icon(Icons.description),
+                            hintText: 'Description(state faults if any) ',
+                            hintStyle: TextStyle(fontFamily: 'OpenSans'),
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            _tabController.index = 1;
+                          },
+                          child: const Text("Proceed")),
+                      const SizedBox(height: 20),
                     ]),
                   ),
                 ],
               ),
-
               ListView(
                 children: [
                   Container(
-                    decoration:  BoxDecoration(
-                    // color: Colors.green.withOpacity(0.5),
-                        image: DecorationImage(
-                      image: AssetImage('assets/jaguar.jpg'),
-                      colorFilter: ColorFilter.mode(Colors.blueGrey, BlendMode.modulate,),
-                      fit: BoxFit.cover,
+                    decoration: BoxDecoration(
+                      // color: Colors.green.withOpacity(0.5),
+                      image: DecorationImage(
+                        image: AssetImage('assets/jaguar.jpg'),
+                        colorFilter: ColorFilter.mode(
+                          Colors.blueGrey,
+                          BlendMode.modulate,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    ),
-                      child: SpecsForm(),
-                    ),
-                ],  
-                 )
-
-
+                    child: SpecForm(),
+                  ),
+                ],
+              )
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  SpecForm() {
+    return Padding(
+      padding: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+      child: Material(
+        elevation: 1,
+        clipBehavior: Clip.antiAlias,
+        borderRadius: BorderRadius.circular(8),
+        child: Theme(
+          data: Theme.of(context).copyWith(
+              inputDecorationTheme: InputDecorationTheme(
+                  focusColor: kPrimaryColor,
+                  fillColor: kPrimaryColor,
+                  iconColor: kPrimaryColor,
+                  labelStyle: TextStyle(
+                      // color: kPrimaryColor
+                      ))),
+          child: Form(
+            child: Container(
+              color: Colors.blueGrey.withOpacity(0.4),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: 16, right: 16, top: 16, bottom: 20),
+                    child: TextFormField(
+                      controller: speed,
+                      cursorColor: kPrimaryColor,
+                      /*initialValue: widget.user.fullName,
+                      onSaved: (val) => widget.user.fullName = val,
+                      validator: (val) =>
+                          val.length > 3 ? null : 'Full name is invalid',*/
+                      decoration: InputDecoration(
+                          labelText: 'Car Speed',
+                          hintText: 'Enter the Car speed',
+                          icon: Icon(Icons.speed),
+                          isDense: true,
+                          border: UnderlineInputBorder()),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
+                    child: TextFormField(
+                      controller: enginType,
+                      /* initialValue: widget.user.email,
+                      onSaved: (val) => widget.user.email = val,
+                      validator: (val) =>
+                          val.contains('@') ? null : 'Email is invalid',*/
+                      decoration: InputDecoration(
+                        labelText: 'Engine type',
+                        hintText: 'Enter the Engine type',
+                        icon: Icon(Icons.escalator),
+                        isDense: true,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16, bottom: 10),
+                    child: TextFormField(
+                      controller: mileage,
+                      /* initialValue: widget.user.email,
+                      onSaved: (val) => widget.user.email = val,
+                      validator: (val) =>
+                          val.contains('@') ? null : 'Email is invalid',*/
+                      decoration: InputDecoration(
+                        labelText: 'Mileage',
+                        hintText: 'Enter the Mileage',
+                        icon: Icon(Icons.location_city),
+                        isDense: true,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16, bottom: 10),
+                    child: TextFormField(
+                      controller: power,
+                      /* initialValue: widget.user.email,
+                      onSaved: (val) => widget.user.email = val,
+                      validator: (val) =>
+                          val.contains('@') ? null : 'Email is invalid',*/
+                      decoration: InputDecoration(
+                        labelText: 'Power',
+                        hintText: 'Enter the house power',
+                        icon: Icon(Icons.location_on),
+                        isDense: true,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
+                    child: TextFormField(
+                      controller: tankCapacity,
+                      /* initialValue: widget.user.email,
+                      onSaved: (val) => widget.user.email = val,
+                      validator: (val) =>
+                          val.contains('@') ? null : 'Email is invalid',*/
+                      decoration: InputDecoration(
+                        labelText: 'Tank Capacity',
+                        hintText: 'Enter the Tank Capacity',
+                        icon: Icon(Icons.local_gas_station),
+                        isDense: true,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
+                    child: TextFormField(
+                      /* initialValue: widget.user.email,
+                      onSaved: (val) => widget.user.email = val,
+                      validator: (val) =>
+                          val.contains('@') ? null : 'Email is invalid',*/
+                      decoration: InputDecoration(
+                        labelText: 'Fuel Level',
+                        hintText: 'Enter the current Fuel Level',
+                        icon: Icon(Icons.local_gas_station),
+                        isDense: true,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+                    child: ElevatedButton(
+                      child: const Text(
+                        'Lease car',
+                        // style: TextStyle(fontSize: 10),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          primary: kPrimaryColor,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 40, vertical: 20)),
+                      onPressed: () {
+                        recentimg.add(Car(
+                            speed: speed.text,
+                            tankCapacity: tankCapacity.text,
+                            fuelLevel: fuelLevel.text,
+                            engineType: enginType.text,
+                            millage: mileage.text,
+                            power: power.text,
+                            brand: brand.text,
+                            vin: vin_no.text,
+                            insurance: insurance_no.text,
+                            name: model.text,
+                            imgurl: _image!.path.toString(),
+                            descip: description.text,
+                            city: location.text,
+                            amount: amount.text,
+                            currency: 'Ghc',
+                            dur: '1'));
+
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => manageCar(),
+                            ));
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         ),
       ),

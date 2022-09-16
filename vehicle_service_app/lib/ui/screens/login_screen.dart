@@ -6,6 +6,7 @@ import 'package:vehicle_service_app/ui/components/components.dart';
 import 'package:vehicle_service_app/ui/components/under_part.dart';
 import 'package:vehicle_service_app/ui/dashboard.dart';
 import 'package:vehicle_service_app/ui/screens/signup_screen.dart';
+import 'package:vehicle_service_app/ui/screens/usertype.dart';
 import 'package:vehicle_service_app/ui/welcome.dart';
 import 'package:vehicle_service_app/ui/widgets/widgets.dart';
 
@@ -23,8 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordcontroller = TextEditingController();
 
   //void dispose() {
-    //_emailcontroller.dispose();
-    //_passwordcontroller.dispose();
+  //_emailcontroller.dispose();
+  //_passwordcontroller.dispose();
   //}
 
   @override
@@ -95,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const Homepage()));
+                                                  const userType()));
                                     } else {}
                                   }),
                               const SizedBox(

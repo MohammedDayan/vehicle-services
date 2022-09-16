@@ -32,7 +32,7 @@ class CustomDrawer extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                      Text('Mohammed Dayan',
+                      Text('Mohammed Dayan',  
                           style: TextStyle(
                             fontFamily: 'OpenSans',
                             fontSize: 17,

@@ -27,4 +27,6 @@ class Defaults {
     Icons.delete,
     Icons.warning_rounded,
   ];
+
 }
+enum UserType { individual, company, renter }
