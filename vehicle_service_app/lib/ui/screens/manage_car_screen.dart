@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:focused_menu/focused_menu.dart';
+import 'package:focused_menu/modals.dart';
 import 'package:vehicle_service_app/ui/recentcars.dart';
 import 'package:vehicle_service_app/model/car.dart';
+import 'package:vehicle_service_app/ui/screens/mycars.dart';
 import 'package:vehicle_service_app/ui/screens/preview_screen.dart';
 
 class manageCar extends StatefulWidget {
@@ -9,27 +12,53 @@ class manageCar extends StatefulWidget {
 }
 
 Widget _buildCarList(BuildContext context, Car recentimg) {
-  return Hero(
-    tag: recentimg.imgurl,
-    child: Material(
-      child: ListTile(
-        //textColor: Colors.red,
-        title: Text(recentimg.name),
-        leading: Image.asset(recentimg.imgurl),
-        subtitle: Text(recentimg.descip),
-        onTap: () {
-           Navigator.push(
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+    child: FocusedMenuHolder(
+      menuItems: [
+        FocusedMenuItem(
+          title: Text('Edit Car'), 
+          trailingIcon: Icon(Icons.edit),
+          onPressed: (){
+            Navigator.pop(
               context,
               MaterialPageRoute(
-                  builder: (context) =>
-                      MyOrder(
-                        car: recentimg,
-                      )));
-      },
+                  builder: (context) => myCars(),
+                  )
+                );
+          }
+        ),
+
+        FocusedMenuItem(
+          title: Text('Delete Car', style: TextStyle(color: Colors.white),), 
+          trailingIcon: Icon(Icons.delete, color: Colors.white,),
+          onPressed: (){},
+          backgroundColor: Colors.red.withOpacity(0.5),
+        )
+      ],
+      blurBackgroundColor: Colors.blueGrey[900],
+      menuOffset: 10,
+      openWithTap: true,
+      onPressed: (){},
+      duration: Duration(seconds: 1),
+      child: Material(
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 2),
+          child: ListTile(
+            //textColor: Colors.red,
+            shape: Border.all(width: 1, color: Colors.grey),
+            title: Text(recentimg.name),
+            leading: Image.asset(recentimg.imgurl),
+            subtitle: Text(recentimg.descip),
+            
+          ),
+        ),
       ),
     ),
   );
 }
+
+
 
 class _manageCarState extends State<manageCar> {
   @override
@@ -51,4 +80,6 @@ class _manageCarState extends State<manageCar> {
             itemBuilder: (context, index) =>
                 _buildCarList(context, recentimg[index])));
   }
+
+  
 }
