@@ -6,6 +6,7 @@ import 'package:vehicle_service_app/ui/recentcars.dart';
 import 'package:vehicle_service_app/ui/rentacar.dart';
 import 'package:vehicle_service_app/ui/screens/available_cars.dart';
 import 'package:vehicle_service_app/ui/screens/mycars.dart';
+import 'package:vehicle_service_app/ui/widgets/brands.dart';
 import 'package:vehicle_service_app/ui/widgets/drawer.dart';
 import 'package:vehicle_service_app/ui/widgets/search_cars.dart';
 import 'package:vehicle_service_app/ui/screens/updateprofile.dart';
@@ -76,6 +77,40 @@ class _HomepageState extends State<Homepage> {
                       ],
                     ),
                   ),
+                  const SizedBox(
+                    height: 5.0,
+                  ),
+
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          user.displayName != null
+                              ? 'Hello ' + user.displayName!
+                              : "hello User",
+                          style: const TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          overflow: TextOverflow.clip,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                      alignment: AlignmentDirectional.topStart,
+                      padding: const EdgeInsets.fromLTRB(
+                        20.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                      ),
+                      child: const Text('Welcome to rent any car of your choice')),
+                  const SizedBox(
+                    height: 15.0,
+                  ),
+
                   GestureDetector(
                     onTap: () =>
                         showSearch(context: context, delegate: SearchCars()),
@@ -97,40 +132,15 @@ class _HomepageState extends State<Homepage> {
                         ) //search
                         ),
                   ),
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
-                        child: Text(
-                          user.displayName != null
-                              ? 'Hello ' + user.displayName!
-                              : "hello User",
-                          style: const TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          overflow: TextOverflow.clip,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                      alignment: AlignmentDirectional.topStart,
-                      padding: const EdgeInsets.fromLTRB(
-                        30.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                      ),
-                      child: const Text('Welcome to Vehicle Services Home')),
                   const SizedBox(
-                    height: 15.0,
+                    height: 5.0,
                   ),
+
                   Container(
                     padding: const EdgeInsets.fromLTRB(15.0, 5.0, 5.0, 5.0),
                     alignment: AlignmentDirectional.topStart,
                     child: const Text(
-                      'Available cars',
+                      'Recent Cars',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20.0,
@@ -138,7 +148,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                   Container(
-                    height: size.height/3,
+                    height: size.height/3.3,
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     margin: EdgeInsets.symmetric(horizontal: 5),
                     decoration: BoxDecoration(
@@ -147,7 +157,7 @@ class _HomepageState extends State<Homepage> {
                         //right: BorderSide(width: 1, color: Colors.red)
                       //),
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.blueGrey.withOpacity(0.5),
+                      color: Colors.blueGrey.withOpacity(0.2),
                       //shape: BoxShape.rectangle
                     ),
                     child: CarouselSlider(
@@ -162,6 +172,27 @@ class _HomepageState extends State<Homepage> {
               const SizedBox(
                 height: 20.0,
               ),
+
+              SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    brand(myimage: Icons.speed, name: 'Tesla'),
+                    brand(myimage: Icons.speed, name: 'Toyota'),
+                    brand(myimage: Icons.speed, name: 'BMW'),
+                    brand(myimage: Icons.speed, name: 'Honda'),
+                    brand(myimage: Icons.speed, name: 'Audi'),
+                    brand(myimage: Icons.speed, name: 'Benz'),
+                    brand(myimage: Icons.speed, name: 'Lexus'),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -252,10 +283,10 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              Row(
+              // const SizedBox(
+                // height: 20.0,
+              // ),
+              /*Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   InkWell(
@@ -321,7 +352,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                 ],
-              )
+              )*/
             ],
           ),
         ),
