@@ -95,12 +95,12 @@ class _MyOrderState extends State<MyOrder> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             WrapAround(
-                                              myicon: Icons.garage,
+                                              myicon: Icons.speed,
                                               info: 'Car speed',
                                               mynum: '300mph',
                                             ),
                                             WrapAround(
-                                              myicon: Icons.garage,
+                                              myicon: Icons.escalator,
                                               info: 'Engine type',
                                               mynum: 'V12',
                                             ),
@@ -110,13 +110,18 @@ class _MyOrderState extends State<MyOrder> {
                                               mynum: '9.8kmpl',
                                             ),
                                             WrapAround(
-                                              myicon: Icons.garage,
-                                              info: 'Max Torque',
+                                              myicon: Icons.location_city,
+                                              info: 'Power',
                                               mynum: '900Nm',
                                             ),
                                             WrapAround(
-                                              myicon: Icons.garage,
-                                              info: 'Tranmission type',
+                                              myicon: Icons.local_gas_station,
+                                              info: 'Tank Capacity',
+                                              mynum: 'Manual',
+                                            ),
+                                            WrapAround(
+                                              myicon: Icons.local_gas_station,
+                                              info: 'Fuel Level',
                                               mynum: 'Manual',
                                             ),
                                           ],

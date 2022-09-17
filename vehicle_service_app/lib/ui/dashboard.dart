@@ -196,7 +196,7 @@ class _HomepageState extends State<Homepage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  InkWell(
+                 /* InkWell(
                     borderRadius: BorderRadius.circular(20.0),
                     onTap: () => Navigator.push(context,
                         MaterialPageRoute(builder: (context) => myCars())),
@@ -239,42 +239,43 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ),
                     ),
-                  ),
-                  InkWell(
-                    borderRadius: BorderRadius.circular(20.0),
-                    onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => availCar())),
-                    child: Ink(
-                      height: 150.0,
-                      width: 150.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        color: const Color.fromARGB(255, 2, 32, 56),
-                      ),
-                      child: Container(
-                        padding: const EdgeInsets.all(5.0),
+                  ),*/
+                  Container(
+                    padding: EdgeInsets.only(bottom: 20),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(20.0),
+                      onTap: () => Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => availCar())),
+                      child: Ink(
+                        width: MediaQuery.of(context).size.width/1.1,
+                        height: MediaQuery.of(context).size.height / 8,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: const Color.fromARGB(255, 2, 32, 56),
+                        ),
                         child: Container(
-                          alignment: AlignmentDirectional.center,
-                          child: Center(
-                            child: Stack(
-                              children: [
-                                Center(child: Image.asset("assets/1.png")),
-                                Positioned(
-                                  bottom: 0.0,
-                                  left: 0.0,
-                                  right: 0.0,
-                                  child: Container(
-                                    alignment:
-                                        AlignmentDirectional.bottomCenter,
-                                    margin: EdgeInsets.all(5.0),
-                                    child: const Text(
-                                      'Rent a Car',
-                                      style: TextStyle(
-                                          fontSize: 20.0, color: Colors.white),
+                          padding: const EdgeInsets.all(5.0),
+                          child: Container(
+                            alignment: AlignmentDirectional.center,
+                            child: Center(
+                              child: Stack(
+                                children: [
+                                  
+                                     Center(
+                                       child: Container(
+                                        alignment:
+                                            AlignmentDirectional.center,
+                                        margin: EdgeInsets.all(5.0),
+                                        child: const Text(
+                                          'See all available cars',
+                                          style: TextStyle(
+                                              fontSize: 20.0, color: Colors.white),
+                                        ),
                                     ),
-                                  ),
-                                ),
-                              ],
+                                     ),
+                                  
+                                ],
+                              ),
                             ),
                           ),
                         ),
