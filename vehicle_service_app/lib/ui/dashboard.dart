@@ -135,6 +135,39 @@ class _HomepageState extends State<Homepage> {
                   const SizedBox(
                     height: 5.0,
                   ),
+                  Container(
+                    padding: EdgeInsets.only(right: 200, bottom: 3),
+                    child: Text(
+                      'Top Brands',
+                      style: TextStyle(
+                        fontSize: 25,  
+                      ),
+                  ),
+                  ),
+                  
+                  SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            brand(myimage: Icons.speed, name: 'Tesla'),
+                            brand(myimage: Icons.speed, name: 'Toyota'),
+                            brand(myimage: Icons.speed, name: 'BMW'),
+                            brand(myimage: Icons.speed, name: 'Honda'),
+                            brand(myimage: Icons.speed, name: 'Audi'),
+                            brand(myimage: Icons.speed, name: 'Benz'),
+                            brand(myimage: Icons.speed, name: 'Lexus'),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
 
                   Container(
                     padding: const EdgeInsets.fromLTRB(15.0, 5.0, 5.0, 5.0),
@@ -172,74 +205,13 @@ class _HomepageState extends State<Homepage> {
               const SizedBox(
                 height: 20.0,
               ),
-
-              SingleChildScrollView(
-                physics: BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    brand(myimage: Icons.speed, name: 'Tesla'),
-                    brand(myimage: Icons.speed, name: 'Toyota'),
-                    brand(myimage: Icons.speed, name: 'BMW'),
-                    brand(myimage: Icons.speed, name: 'Honda'),
-                    brand(myimage: Icons.speed, name: 'Audi'),
-                    brand(myimage: Icons.speed, name: 'Benz'),
-                    brand(myimage: Icons.speed, name: 'Lexus'),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              
+              
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                 /* InkWell(
-                    borderRadius: BorderRadius.circular(20.0),
-                    onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => myCars())),
-                    child: Ink(
-                      height: 150.0,
-                      width: 150.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        color: const Color.fromARGB(255, 2, 32, 56),
-                      ),
-                      child: Container(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Container(
-                          alignment: AlignmentDirectional.center,
-                          child: Center(
-                            child: Stack(
-                              children: [
-                                Center(child: Image.asset("assets/2.png")),
-                                Positioned(
-                                  bottom: 0.0,
-                                  left: 0.0,
-                                  right: 0.0,
-                                  child: Container(
-                                    alignment:
-                                        AlignmentDirectional.bottomCenter,
-                                    margin: EdgeInsets.all(5.0),
-                                    child: const Text(
-                                      'Rent out Your Car  ',
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.white,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),*/
+                 
                   Container(
                     padding: EdgeInsets.only(bottom: 20),
                     child: InkWell(
@@ -284,76 +256,6 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ],
               ),
-              // const SizedBox(
-                // height: 20.0,
-              // ),
-              /*Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  InkWell(
-                    borderRadius: BorderRadius.circular(20.0),
-                    onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => rentCar())),
-                    child: Ink(
-                      height: 150.0,
-                      width: 150.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        color: const Color.fromARGB(255, 2, 32, 56),
-                      ),
-                      child: Container(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Container(
-                          alignment: AlignmentDirectional.center,
-                          child: Center(
-                            child: Stack(
-                              children: [
-                                Center(child: Image.asset("assets/2.png")),
-                                Positioned(
-                                  bottom: 0.0,
-                                  left: 0.0,
-                                  right: 0.0,
-                                  child: Container(
-                                    alignment:
-                                        AlignmentDirectional.bottomCenter,
-                                    margin: EdgeInsets.all(5.0),
-                                    child: const Text(
-                                      'Construction Vehicles ',
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.white,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      color: const Color.fromARGB(255, 2, 32, 56),
-                    ),
-                    height: 150.0,
-                    width: 150.0,
-                    child: Container(
-                      alignment: AlignmentDirectional.center,
-                      child: const Center(
-                        child: Text(
-                          'Find a Mechanic',
-                          style: TextStyle(fontSize: 20.0, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )*/
             ],
           ),
         ),

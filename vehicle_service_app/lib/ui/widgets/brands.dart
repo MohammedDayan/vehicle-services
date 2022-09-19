@@ -15,7 +15,7 @@ class brand extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return Padding(
-     padding: const EdgeInsets.only(left: 10.0,),
+     padding: const EdgeInsets.only(left: 7.0,),
      child: FocusedMenuHolder(
         onPressed: () {},
           blurBackgroundColor: Colors.blueGrey[900],
@@ -28,8 +28,8 @@ class brand extends StatelessWidget {
             onPressed: () {}),
           ],
        child: Container(
-           width: MediaQuery.of(context).size.width / 3.5,
-           height: MediaQuery.of(context).size.height / 8.2,
+           width: 75,
+           height: 80,
            decoration: BoxDecoration(
             color: Colors.blueGrey[200],
             borderRadius: BorderRadius.circular(20)
