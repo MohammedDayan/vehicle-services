@@ -10,6 +10,8 @@ import 'package:vehicle_service_app/model/car.dart';
 import 'package:vehicle_service_app/ui/screens/My_form.dart';
 import 'package:vehicle_service_app/ui/screens/OrderCar_screen.dart';
 import 'package:vehicle_service_app/ui/screens/login_screen.dart';
+import 'package:vehicle_service_app/ui/screens/map_order.dart';
+
 
 class MyOrder extends StatefulWidget {
   const MyOrder({Key? key, required this.car}) : super(key: key);
@@ -212,7 +214,7 @@ class _MyOrderState extends State<MyOrder> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      const OrderCarScreen(),
+                                                      const mapOrder(),
                                                 ));
                                           },
                                         ),

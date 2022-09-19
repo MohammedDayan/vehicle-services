@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:vehicle_service_app/ui/screens/preview_screen.dart';
 
 import '../model/car.dart';
 
@@ -79,36 +80,38 @@ List<Car> recentimg = [
 ];
 
 List<Widget> recentSlider = recentimg
-    .map((item) => Container(
-          padding: const EdgeInsets.all(5.0),
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(5.0)),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.blueGrey.withOpacity(0.4),
-                    border: Border.all(color: Colors.blueGrey.withOpacity(0.4))
-                    ),
-                child: Stack(
-                  children: [
-                    Center(
-                        child: Image.asset(
-                      item.imgurl,
-                      height: 200,
-                      width: 210,
-                    )),
-                    Positioned(
-                        left: 10,
-                        top: 3,
-                        child: Container(
-                          child: Text(item.name),
-                        ))
-                  ],
+    .map((item) => InkWell(
+      child: Container(
+            padding: const EdgeInsets.all(5.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.blueGrey.withOpacity(0.4),
+                      border: Border.all(color: Colors.blueGrey.withOpacity(0.4))
+                      ),
+                  child: Stack(
+                    children: [
+                      Center(
+                          child: Image.asset(
+                        item.imgurl,
+                        height: 200,
+                        width: 210,
+                      )),
+                      Positioned(
+                          left: 10,
+                          top: 3,
+                          child: Container(
+                            child: Text(item.name),
+                          ))
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ))
+    ))
     .toList();

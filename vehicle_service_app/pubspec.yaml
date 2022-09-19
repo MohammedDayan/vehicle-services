@@ -95,6 +95,12 @@ flutter:
       - assets/jaguar.jpg
       - assets/bmw.jpg
       - assets/Lexus.jpg
+      - assets/audi-logo.png
+      - assets/benz-logo.png
+      - assets/honda-logo.png
+      - assets/toyota-logo.png
+      - assets/jaguar-logo.png
+      
 
       - assets/MOB.jpg
 

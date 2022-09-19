@@ -9,7 +9,7 @@ class brand extends StatelessWidget {
       required this.name
        }) 
       : super(key: key);
-  final IconData myimage;
+  final String myimage;
   final String name;
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class brand extends StatelessWidget {
                     ),
                     child: Align(
                        alignment: Alignment.center,
-                       child: Icon(
+                       child: Image.asset(
                         myimage
                        )),   
                   ),
