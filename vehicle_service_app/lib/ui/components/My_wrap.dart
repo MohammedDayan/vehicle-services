@@ -18,7 +18,7 @@ class WrapAround extends StatelessWidget {
       padding: const EdgeInsets.only(left: 10.0,),
       child: Container(
          width: MediaQuery.of(context).size.width / 3.9,
-         height: MediaQuery.of(context).size.height / 5.1,
+         height: MediaQuery.of(context).size.height / 5.4,
          decoration: BoxDecoration(
           color: Color.fromARGB(255, 230, 213, 165).withOpacity(0.9),
           borderRadius: BorderRadius.circular(20)
