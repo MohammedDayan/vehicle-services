@@ -90,8 +90,8 @@ List<Widget> recentSlider = recentimg
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.blueGrey.withOpacity(0.4),
-                      border: Border.all(color: Colors.blueGrey.withOpacity(0.4))
+                      color: Colors.grey[300],
+                      //border: Border.all(color: Colors.blueGrey.withOpacity(0.4))
                       ),
                   child: Stack(
                     children: [

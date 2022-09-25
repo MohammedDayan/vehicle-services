@@ -23,6 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailcontroller = TextEditingController();
   final _passwordcontroller = TextEditingController();
 
+  bool loading = false;
+
   //void dispose() {
   //_emailcontroller.dispose();
   //_passwordcontroller.dispose();
@@ -92,6 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         _emailcontroller.text,
                                         _passwordcontroller.text);
                                     if (navigate) {
+
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(

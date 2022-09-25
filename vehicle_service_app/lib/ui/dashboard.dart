@@ -181,7 +181,8 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                   Container(
-                    height: size.height/3.3,
+                    height: size.height/3.1,
+                    width: size.width,
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     margin: EdgeInsets.symmetric(horizontal: 5),
                     decoration: BoxDecoration(
@@ -190,7 +191,7 @@ class _HomepageState extends State<Homepage> {
                         //right: BorderSide(width: 1, color: Colors.red)
                       //),
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.blueGrey.withOpacity(0.2),
+                     // color: Colors.blueGrey.withOpacity(0.2),
                       //shape: BoxShape.rectangle
                     ),
                     child: CarouselSlider(
