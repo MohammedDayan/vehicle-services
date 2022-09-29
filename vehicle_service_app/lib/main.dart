@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:vehicle_service_app/firebase_options.dart';
 import 'package:vehicle_service_app/ui/dashboard.dart';
 import 'package:vehicle_service_app/ui/screens/carOwnerView.dart';
+import 'package:vehicle_service_app/ui/screens/new_dash.dart';
 import 'package:vehicle_service_app/ui/screens/usertype.dart';
 import 'package:vehicle_service_app/ui/welcome.dart';
 import 'firebase_options.dart';
@@ -30,7 +31,7 @@ class SplashScreen extends StatelessWidget {
         ),
       ),
       backgroundColor: Colors.blueGrey.withOpacity(0.5),
-      nextScreen: Homepage(), 
+      nextScreen: HomeDash(), 
     );
   }
 }
@@ -53,13 +54,19 @@ class MyApp extends StatelessWidget {
       home: isLoggedin ? AnimatedSplashScreen(
         splash: Center(
          child: Container(
+          width: double.infinity,
+          height: 500,
           child: Lottie.asset(
             'assets/car-safety.json',
-            )
+             width: double.infinity,
+             height: 400,
+             fit: BoxFit.cover,
+            ),
+           
           ),
         ),
         backgroundColor: Colors.white, 
-        nextScreen: Homepage(),
+        nextScreen: HomeDash(),
       ) 
       : HomePage(),
 

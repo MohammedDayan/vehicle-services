@@ -67,13 +67,13 @@ class _HomepageState extends State<Homepage> {
                                 Scaffold.of(context).openDrawer();
                               }),
                         ),
-                        CircleAvatar(
-                          backgroundImage: user.photoURL != null
-                              ? NetworkImage(user.photoURL!)
-                              : const NetworkImage(
-                                  'https://cdn2.iconfinder.com/data/icons/action-states-vol-4-flat/48/Action___States_-_Vol._4-10-512.png'),
-                          radius: 20,
-                        )
+                        // CircleAvatar(
+                        //   backgroundImage: user.photoURL != null
+                        //       ? NetworkImage(user.photoURL!)
+                        //       : const NetworkImage(
+                        //           'https://cdn2.iconfinder.com/data/icons/action-states-vol-4-flat/48/Action___States_-_Vol._4-10-512.png'),
+                        //   radius: 20,
+                        // )
                       ],
                     ),
                   ),
@@ -166,7 +166,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 20.0,
+                    height: 10.0,
                   ),
 
                   Container(
@@ -181,7 +181,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                   Container(
-                    height: size.height/3.1,
+                    height: size.height/3.2,
                     width: size.width,
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     margin: EdgeInsets.symmetric(horizontal: 5),
@@ -203,9 +203,9 @@ class _HomepageState extends State<Homepage> {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20.0,
-              ),
+              // const SizedBox(
+              //   height: 20.0,
+              // ),
               
               
 
@@ -214,14 +214,14 @@ class _HomepageState extends State<Homepage> {
                 children: [
                  
                   Container(
-                    padding: EdgeInsets.only(bottom: 20),
+                   // padding: EdgeInsets.only(bottom: 20),
                     child: InkWell(
                       borderRadius: BorderRadius.circular(20.0),
                       onTap: () => Navigator.push(context,
                           MaterialPageRoute(builder: (context) => availCar())),
                       child: Ink(
                         width: MediaQuery.of(context).size.width/1.1,
-                        height: MediaQuery.of(context).size.height / 8,
+                        height: MediaQuery.of(context).size.height / 12,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
                           color: const Color.fromARGB(255, 2, 32, 56),
