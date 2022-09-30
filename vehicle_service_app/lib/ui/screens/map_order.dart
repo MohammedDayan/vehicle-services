@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:vehicle_service_app/config/constants.dart';
 import 'package:vehicle_service_app/ui/components/request_view.dart';
 import 'package:vehicle_service_app/ui/screens/updateprofile.dart';
@@ -16,6 +19,10 @@ class mapOrder extends StatefulWidget {
   State<mapOrder> createState() => _mapOrderState();
 }
 class _mapOrderState extends State<mapOrder> {
+  final Completer<GoogleMapController> _controller = Completer();
+
+  static const LatLng sourceLocation = LatLng(5.614818, -0.205874);
+  static const LatLng destination = LatLng(37.33429383, -122.06600055);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -31,6 +38,13 @@ class _mapOrderState extends State<mapOrder> {
                         height: size.height / 1.6,
                         width: size.width,
                         color: Colors.grey[300],
+                        child: GoogleMap(
+                          initialCameraPosition: CameraPosition(
+                            target: sourceLocation,
+                            zoom: 14.5,
+                          ),
+                          
+                        ),
                     ),
 
                     Positioned(

@@ -181,7 +181,7 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                   Container(
-                    height: size.height/3.2,
+                    height: size.height/3.2  ,
                     width: size.width,
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     margin: EdgeInsets.symmetric(horizontal: 5),
