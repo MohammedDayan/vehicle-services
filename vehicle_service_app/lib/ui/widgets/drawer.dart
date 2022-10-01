@@ -17,20 +17,25 @@ class CustomDrawer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               DrawerHeader(
-                decoration: BoxDecoration(color: kPrimaryColor),
+                decoration: BoxDecoration(color: Colors.grey[300]),
                 padding: EdgeInsets.all(0),
                 child: Container(
-                  child: Column(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(width: 2, color: Colors.blueGrey.withOpacity(0.2))
+                    )
+                  ),
+                  child: Row(
                     children: const [
                       SizedBox(
-                        height: 10,
+                        width: 10,
                       ),
                       CircleAvatar(
-                        radius: 42,
+                        radius: 30,
                         backgroundImage: AssetImage('assets/IMG_0934.jpg'),
                       ),
                       SizedBox(
-                        height: 10,
+                        width: 10,
                       ),
                       Text('Mohammed Dayan',  
                           style: TextStyle(
@@ -39,16 +44,14 @@ class CustomDrawer extends StatelessWidget {
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
                           )),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text('Dayan@gmail.com',
+                      
+                      /*Text('Dayan@gmail.com',
                           style: TextStyle(
                             fontFamily: 'OpenSans',
                             fontSize: 15,
                             color: Colors.black,
                             fontWeight: FontWeight.w400,
-                          )),
+                          )),*/
                     ],
                   ),
                 ),
