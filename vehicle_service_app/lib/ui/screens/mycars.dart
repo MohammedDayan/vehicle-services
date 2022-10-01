@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vehicle_service_app/config/constants.dart';
@@ -21,6 +23,7 @@ class myCars extends StatefulWidget {
 
 class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
   late final _tabController = TabController(length: 2, vsync: this);
+  var db = FirebaseFirestore.instance;
 
   final _formKey = GlobalKey<FormState>();
   final model = TextEditingController();
@@ -43,14 +46,31 @@ class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
   File? _image;
   final _picker = ImagePicker();
 
+  var _imgName;
+
+  late String carImgUrl;
+
   void _openimagePicker() async {
     final XFile? pickedImage =
         await _picker.pickImage(source: ImageSource.gallery);
+
+    //upload carimg
     if (pickedImage != null) {
       setState(() {
         _image = File(pickedImage.path);
+        _imgName = File(pickedImage.name);
       });
+      upload();
     }
+  }
+
+  Future upload() async {
+    final path = 'CarsImg/${_imgName!}';
+    final file = _image!;
+    final ref = FirebaseStorage.instance.ref().child(path);
+    UploadTask uploadTask = ref.putFile(file);
+    final snapshot = await uploadTask.whenComplete(() => {});
+    carImgUrl = await snapshot.ref.getDownloadURL();
   }
 
   @override
@@ -149,26 +169,29 @@ class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
                       SizedBox(
                         height: 30.0,
                       ),
-                      Text("Tap to add an image of the car"),
-                      InkWell(
-                        onTap: () {
-                          _openimagePicker();
-                        },
-                        child: Center(
-                          child: ClipRect(
+                      Container(
+                        height: 200,
+                        width: 300,
+                        child: InkWell(
+                          onTap: () {
+                            _openimagePicker();
+                          },
+                          child: Center(
                             child: Builder(builder: (context) {
                               return Container(
+                                height: 200,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.rectangle,
                                   image: DecorationImage(
                                     image: _image != null
-                                        ? Image.network(_image!.path)
-                                            as ImageProvider
-                                        : const NetworkImage(
-                                            'https://static.thenounproject.com/png/54657-200.png'),
+                                        ? FileImage(_image!) as ImageProvider
+                                        : AssetImage(
+                                            'assets/images/addcarImg.png'),
+
                                     // Image.file(File(_image?.path))
                                   ),
                                 ),
+                                child: Text("Tap to add an image of the car "),
                               );
                             }),
                           ),
@@ -373,13 +396,30 @@ class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
                             vin: vin_no.text,
                             insurance: insurance_no.text,
                             name: model.text,
-                            imgurl: _image!.path.toString(),
+                            imgurl: carImgUrl,
                             descip: description.text,
                             city: location.text,
                             amount: amount.text,
                             currency: 'Ghc',
                             dur: '1'));
-
+                        db.collection("Cars").add({
+                          "speed": speed.text,
+                          "tankCapacity": tankCapacity.text,
+                          "fuelLevel": fuelLevel.text,
+                          "engineType": enginType.text,
+                          "millage": mileage.text,
+                          "power": power.text,
+                          "brand": brand.text,
+                          "vin": vin_no.text,
+                          "insurance": insurance_no.text,
+                          "name": model.text,
+                          "imgurl": carImgUrl,
+                          "descip": description.text,
+                          "city": location.text,
+                          "amount": amount.text,
+                          "currency": 'Ghc',
+                          "dur": '1'
+                        });
                         Navigator.push(
                             context,
                             MaterialPageRoute(

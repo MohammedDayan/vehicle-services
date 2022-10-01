@@ -53,7 +53,7 @@ Widget _buildCarList(BuildContext context, Car recentimg) {
             //textColor: Colors.red,
             shape: Border.all(width: 1, color: Colors.grey),
             title: Text(recentimg.name),
-            leading: Image.asset(recentimg.imgurl),
+            leading: Image.network(recentimg.imgurl),
             subtitle: Text(recentimg.descip),
           ),
         ),

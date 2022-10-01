@@ -22,7 +22,7 @@ class carOwnersView extends StatefulWidget {
 }
 
 class _HomepageState extends State<carOwnersView> {
-  // final user = FirebaseAuth.instance.currentUser!;
+  final user = FirebaseAuth.instance.currentUser!;
   int _selectIndex = 0;
   PageController pageController = PageController();
   @override
@@ -62,11 +62,13 @@ class _HomepageState extends State<carOwnersView> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Med rentals"),
-                Text(
-                  DateTime.now().toString(),
-                  style: TextStyle(color: Colors.white),
-                ),
+                Text(user.displayName != null
+                    ? " Rentals" + user.displayName!
+                    : 'Rentals'),
+                // Text(
+                //   DateTime.now().toString(),
+                //   style: TextStyle(color: Colors.white),
+                // ),
               ],
             ),
           ),

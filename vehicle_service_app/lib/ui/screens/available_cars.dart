@@ -50,7 +50,7 @@ Widget _buildCarList(BuildContext context, Car recentimg) {
                               child: Container(
                             //color: Colors.red,
                             height: size.height / 6,
-                            child: Image.asset(
+                            child: Image.network(
                               recentimg.imgurl,
                               width: size.width / 1.2,
                               height: size.height / 1.9,

@@ -2,9 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:vehicle_service_app/config/carservice.dart';
 import 'package:vehicle_service_app/ui/recentcars.dart';
 import 'package:vehicle_service_app/ui/rentacar.dart';
-import 'package:vehicle_service_app/ui/screens/available_cars.dart';
+import 'package:vehicle_service_app/ui/screens/carsavailable.dart';
+import 'package:vehicle_service_app/ui/screens/createProfile.dart';
 import 'package:vehicle_service_app/ui/screens/mycars.dart';
 import 'package:vehicle_service_app/ui/widgets/drawer.dart';
 import 'package:vehicle_service_app/ui/widgets/search_cars.dart';
@@ -68,9 +70,8 @@ class _HomepageState extends State<Homepage> {
                         ),
                         CircleAvatar(
                           backgroundImage: user.photoURL != null
-                              ? NetworkImage(user.photoURL!)
-                              : const NetworkImage(
-                                  'https://cdn2.iconfinder.com/data/icons/action-states-vol-4-flat/48/Action___States_-_Vol._4-10-512.png'),
+                              ? NetworkImage(user.photoURL!) as ImageProvider
+                              : const AssetImage('assets/images/profile.png'),
                           radius: 20,
                         )
                       ],
@@ -138,13 +139,13 @@ class _HomepageState extends State<Homepage> {
                     ),
                   ),
                   Container(
-                    height: size.height/3,
+                    height: size.height / 3,
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     margin: EdgeInsets.symmetric(horizontal: 5),
                     decoration: BoxDecoration(
-                     // border: Border(
-                        //left: BorderSide(width: 1, color: Colors.red),
-                        //right: BorderSide(width: 1, color: Colors.red)
+                      // border: Border(
+                      //left: BorderSide(width: 1, color: Colors.red),
+                      //right: BorderSide(width: 1, color: Colors.red)
                       //),
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.blueGrey.withOpacity(0.5),
@@ -260,8 +261,10 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   InkWell(
                     borderRadius: BorderRadius.circular(20.0),
-                    onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => rentCar())),
+                    onTap: () => Navigator.push(
+                        context,
+                        // MaterialPageRoute(builder: (context) => rentCar())),
+                        MaterialPageRoute(builder: (context) => allcars())),
                     child: Ink(
                       height: 150.0,
                       width: 150.0,

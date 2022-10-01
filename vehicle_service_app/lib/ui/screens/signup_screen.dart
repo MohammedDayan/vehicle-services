@@ -91,6 +91,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   const LoginScreen()));
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                              content: Text(
+                                                  "Email Exist Use a different Email or check your network and try again")));
                                     }
                                   }),
                               const SizedBox(

@@ -6,8 +6,12 @@ Future<bool> signIn(email, password) async {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
     return true;
-  } catch (e) {
-    print(e);
+  } on FirebaseAuthException catch (e) {
+    if (e.code == 'network-request-failed') {
+      print('Check your internet and try again');
+    } else {
+      print(e);
+    }
     return false;
   }
 }
@@ -21,7 +25,7 @@ Future<bool> register(email, password) async {
   } on FirebaseAuthException catch (e) {
     if (e.code == 'week-password') {
       print('the password provided is too weak');
-    } else if (e.code == 'email-already-in-use') {
+    } else if (e.code == 'result !=null') {
       print('An account exists for this email , try using a different email.');
     }
     return false;

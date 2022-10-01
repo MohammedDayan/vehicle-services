@@ -13,7 +13,7 @@ import 'package:vehicle_service_app/ui/screens/login_screen.dart';
 
 class MyOrder extends StatefulWidget {
   const MyOrder({Key? key, required this.car}) : super(key: key);
-  final Car car;
+  final car;
 
   @override
   State<MyOrder> createState() => _MyOrderState();
@@ -46,8 +46,8 @@ class _MyOrderState extends State<MyOrder> {
                     ),*/
                             ),
                         child: Hero(
-                            tag: widget.car.imgurl,
-                            child: Image.asset(widget.car.imgurl))),
+                            tag: widget.car['imgurl'],
+                            child: Image.network(widget.car['imgurl']))),
                     Positioned(
                       bottom: 0,
                       child: Padding(
@@ -203,6 +203,7 @@ class _MyOrderState extends State<MyOrder> {
                                                       horizontal: 40,
                                                       vertical: 20)),
                                           onPressed: () {
+                                            //tying required user details to process order
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
@@ -234,14 +235,14 @@ class _MyOrderState extends State<MyOrder> {
                         child: Column(
                           children: [
                             Text(
-                              widget.car.name,
+                              widget.car['name'],
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 30,
                               ),
                             ),
                             Text(
-                              widget.car.descip,
+                              widget.car['descip'],
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,

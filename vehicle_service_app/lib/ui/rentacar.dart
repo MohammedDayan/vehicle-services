@@ -15,17 +15,16 @@ Widget _buildCarList(BuildContext context, Car recentimg) {
       child: ListTile(
         //textColor: Colors.red,
         title: Text(recentimg.name),
-        leading: Image.asset(recentimg.imgurl),
+        leading: Image.network(recentimg.imgurl),
         subtitle: Text(recentimg.descip),
         onTap: () {
-           Navigator.push(
+          Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) =>
-                      MyOrder(
+                  builder: (context) => MyOrder(
                         car: recentimg,
                       )));
-      },
+        },
       ),
     ),
   );

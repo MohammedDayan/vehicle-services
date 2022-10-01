@@ -50,6 +50,7 @@ dependencies:
   focused_menu: ^1.0.2
   d_chart: ^0.0.4
   image_picker_for_web: ^2.1.8
+  flutter_spinkit: ^5.1.0
 
 dev_dependencies:
   flutter_test:

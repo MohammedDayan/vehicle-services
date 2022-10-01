@@ -9,7 +9,8 @@ List<Car> recentimg = [
       brand: 'Toyota',
       vin: '',
       insurance: '',
-      imgurl: "assets/2.png",
+      imgurl:
+          "https://firebasestorage.googleapis.com/v0/b/vehicle-services-3c12b.appspot.com/o/CarsImg%2F2.png?alt=media&token=18244e49-f32f-4486-9a15-29254eda69de",
       descip: " 2020 red",
       city: "Kumasi",
       fuelLevel: '',
@@ -26,7 +27,8 @@ List<Car> recentimg = [
       brand: 'Toyota',
       vin: '',
       insurance: '',
-      imgurl: "assets/1.png",
+      imgurl:
+          "https://firebasestorage.googleapis.com/v0/b/vehicle-services-3c12b.appspot.com/o/CarsImg%2F1.png?alt=media&token=e6bb99dc-751d-4d32-944a-5be2864be928",
       descip: "Toyota 2022 blue",
       city: "Accra",
       fuelLevel: '',
@@ -43,7 +45,8 @@ List<Car> recentimg = [
     brand: 'Toyota',
     vin: '',
     insurance: '',
-    imgurl: "assets/3.jpg",
+    imgurl:
+        "https://firebasestorage.googleapis.com/v0/b/vehicle-services-3c12b.appspot.com/o/CarsImg%2F3.jpg?alt=media&token=8ce58a1c-034b-49fc-a5ac-fcdb832479d4",
     descip: " Toyota 2016 white",
     city: "Kumasi",
     fuelLevel: '',
@@ -61,7 +64,8 @@ List<Car> recentimg = [
     brand: 'Toyota',
     vin: '',
     insurance: '',
-    imgurl: "assets/4.jpg",
+    imgurl:
+        "https://firebasestorage.googleapis.com/v0/b/vehicle-services-3c12b.appspot.com/o/CarsImg%2F4.jpg?alt=media&token=81729a9b-8b76-4e67-93e6-49e542c989c5",
     descip: " Nissan 2020 blue-black",
     city: "Kumasi",
     fuelLevel: '',
@@ -88,7 +92,7 @@ List<Widget> recentSlider = recentimg
               child: Stack(
                 children: [
                   Center(
-                      child: Image.asset(
+                      child: Image.network(
                     item.imgurl,
                     height: 200,
                     width: 210,

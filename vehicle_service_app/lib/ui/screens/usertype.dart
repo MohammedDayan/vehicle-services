@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vehicle_service_app/ui/screens/carOwnerView.dart';
 
 import '../../config/constants.dart';
 import '../dashboard.dart';
@@ -9,8 +10,6 @@ class userType extends StatefulWidget {
   @override
   State<userType> createState() => _userTypeState();
 }
-
-
 
 class _userTypeState extends State<userType> {
   UserType? _user;
@@ -70,12 +69,15 @@ class _userTypeState extends State<userType> {
       case UserType.individual:
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const Homepage()));
+        // save usertype using user model for future login
         break;
       case UserType.renter:
-        print("car renter");
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const carOwnersView()));
         break;
       case UserType.company:
-        print("i am a company");
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const carOwnersView()));
         break;
       default:
         const snackbar =

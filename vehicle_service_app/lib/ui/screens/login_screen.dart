@@ -97,7 +97,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   const userType()));
-                                    } else {}
+                                    } else {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(const SnackBar(
+                                              backgroundColor: Colors.red,
+                                              content: Text(
+                                                  "Incorrect Email or password, check your internet connection if you are sure of your credentials")));
+                                    }
                                   }),
                               const SizedBox(
                                 height: 10,
