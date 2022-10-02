@@ -23,6 +23,7 @@ class _mapOrderState extends State<mapOrder> {
 
   static const LatLng sourceLocation = LatLng(5.614818, -0.205874);
   static const LatLng destination = LatLng(37.33429383, -122.06600055);
+  TextEditingController _date = TextEditingController();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -34,133 +35,159 @@ class _mapOrderState extends State<mapOrder> {
                 height: size.height,
                 child: Stack(
                   children: [
-                    Container(
-                        height: size.height / 1.6,
-                        width: size.width,
-                        color: Colors.grey[300],
-                        child: GoogleMap(
-                          initialCameraPosition: CameraPosition(
-                            target: sourceLocation,
-                            zoom: 14.5,
-                          ),
+                    // Container(
+                    //     height: size.height / 1.6,
+                    //     width: size.width,
+                    //     color: Colors.grey[300],
+                    //     child: GoogleMap(
+                    //       initialCameraPosition: CameraPosition(
+                    //         target: sourceLocation,
+                    //         zoom: 14.5,
+                    //       ),
                           
-                        ),
-                    ),
+                    //     ),
+                    // ),
 
-                    Positioned(
-                      bottom: 0,
-                        child: Column(
-                          children: [
-                            Container(
-                              height: size.height / 2.5,
-                              width: size.width,
-                              decoration: BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(50),
-                                topRight: Radius.circular(50),
+                    
+                       Container(
+                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                //height: size.height / 2.5,
+                                width: size.width,
+                                decoration: BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.rectangle,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(50),
+                                  topRight: Radius.circular(50),
+                                ),
                               ),
-                            ),
-                            child: SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                     children: [
-                                      Container(
-                                        padding: EdgeInsets.only(left: 10),
-                                        child: Row(
-                                          children: [
-                                            CircleAvatar(
-                                              radius: 30,
-                                              backgroundImage: AssetImage('assets/IMG_0934.jpg'),
-                                            ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                      margin: EdgeInsets.symmetric(horizontal: 10),
+                                      decoration: BoxDecoration(
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                color:Colors.blueGrey.withOpacity(0.2)))),
+                                      //color: Colors.blueGrey,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                       children: [
+                                        Container(
+                                          padding: EdgeInsets.only(left: 10),
+                                          child: Row(
+                                            children: [
+                                              CircleAvatar(
+                                                radius: 30,
+                                                backgroundImage: AssetImage('assets/IMG_0934.jpg'),
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
 
-                                            Text('Mohammed'),
-                                          ],
+                                              Text('Mohammed'),
+                                            ],
+                                          ),
                                         ),
-                                      ),
 
-                                      Container(
-                                        child: Icon(Icons.chat)
-                                      ),
+                                        Container(
+                                          child: Icon(Icons.chat)
+                                        ),
 
-                                     ],
+                                       ],
+                                      ),
                                     ),
-                                  ),
 
-                                   Column(
-                                     children: [
-                                       Center(
-                                         child: Container(
-                                           child: RoundedInputField(
-                                            icon: Icons.location_on,
-                                            hintText: "Enter your location",
-                                          ),
-                                         ),
-                                       ),
-                                       Center(
-                                     child: Container(
-                                       child: RoundedInputField(
-                                        icon: Icons.calendar_month,
-                                        hintText: "Enter Start Date",
-                                      ),
-                                     ),
-                                   ),
-
-                                   
-                                       ElevatedButton(
-                                            child: const Text(
-                                              'Book car',
-                                              // style: TextStyle(fontSize: 10),
+                                     Column(
+                                       children: [
+                                         Center(
+                                            child: Container(
+                                              child: RoundedInputField(
+                                                controller: _date,
+                                                
+                                                icon: Icons.calendar_month,
+                                                hintText: "Enter Start Date",
+                                              ),
                                             ),
-                                            style: ElevatedButton.styleFrom(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15.0),
-                                                ),
-                                                primary: kPrimaryColor,
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 40,
-                                                        vertical: 20)),
-                                            onPressed: () {
-                                               Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const manageRequest(),
-                                                  ));
-                                            },
                                           ),
-                                    
-                                     ],
-                                   ),
-                                   
-                                   
-                                  //  Center(
-                                  //    child: Container(
-                                  //      child: RoundedInputField(
-                                  //       icon: Icons.location_on,
-                                  //       hintText: "Enter your location",
-                                  // ),
-                                  //    ),
-                                  //  ),
+                                          Center(
+                                            child: Container(
+                                              child: RoundedInputField(
+                                                icon: Icons.calendar_month,
+                                                hintText: "Enter Return Date",
+                                              ),
+                                            ),
+                                          ),
+                                          Center(
+                                            child: Container(
+                                              child: RoundedInputField(
+                                                icon: Icons.location_on,
+                                                hintText: "Enter Pickup location",
+                                              ),
+                                            ),
+                                          ),
+                                          Center(
+                                            child: Container(
+                                              child: RoundedInputField(
+                                                icon: Icons.location_on,
+                                                hintText: "Enter Return location",
+                                              ),
+                                            ),
+                                          ),
 
-                                ],
+                                     
+                                         ElevatedButton(
+                                              child: const Text(
+                                                'Book car',
+                                                // style: TextStyle(fontSize: 10),
+                                              ),
+                                              style: ElevatedButton.styleFrom(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(15.0),
+                                                  ),
+                                                  primary: kPrimaryColor,
+                                                  padding:
+                                                      const EdgeInsets.symmetric(
+                                                          horizontal: 40,
+                                                          vertical: 20)),
+                                              onPressed: () {
+                                                 Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const manageRequest(),
+                                                    ));
+                                              },
+                                            ),
+                                      
+                                       ],
+                                     ),
+                                     
+                                     
+                                    //  Center(
+                                    //    child: Container(
+                                    //      child: RoundedInputField(
+                                    //       icon: Icons.location_on,
+                                    //       hintText: "Enter your location",
+                                    // ),
+                                    //    ),
+                                    //  ),
+
+                                  ],
+                                ),
                               ),
-                            ),
-                            ),
-                          ],
-                        ),
+                              ),
+                            ],
+                          ),
+                       ),
                       
-                    )
+                    
                   ],
                 ),
              )

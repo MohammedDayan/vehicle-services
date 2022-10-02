@@ -28,10 +28,10 @@ class brand extends StatelessWidget {
             onPressed: () {}),
           ],
        child: Container(
-           width: 75,
-           height: 80,
+           width: 70,
+           height: 75,
            decoration: BoxDecoration(
-            color: Colors.blueGrey[200],
+            color: Colors.blueGrey[100],
             borderRadius: BorderRadius.circular(20)
            ),
           

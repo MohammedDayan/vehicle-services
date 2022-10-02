@@ -130,7 +130,7 @@ class _availCarState extends State<availCar> {
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
-                                                          right: 80.0,
+                                                          right: 60.0,
                                                           left: 10,
                                                           bottom: 6),
                                                   child: Row(
@@ -140,7 +140,7 @@ class _availCarState extends State<availCar> {
                                                     children: [
                                                       Row(
                                                         children: [
-                                                          Icon(Icons.garage),
+                                                          Icon(Icons.speed),
                                                           Text(data['speed']),
                                                         ],
                                                       ),
@@ -150,7 +150,7 @@ class _availCarState extends State<availCar> {
                                                       Row(
                                                         children: [
                                                           Icon(
-                                                            Icons.garage,
+                                                            Icons.route,
                                                             //color: Colors.white,
                                                           ),
                                                           Text(data['millage']),

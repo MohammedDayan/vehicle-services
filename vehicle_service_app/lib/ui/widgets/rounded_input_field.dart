@@ -6,7 +6,7 @@ class RoundedInputField extends StatelessWidget {
   var controller;
 
   RoundedInputField(
-      {Key? key, this.hintText, this.icon = Icons.person, this.controller})
+      {Key? key, this.hintText, this.icon = Icons.person, this.controller,})
       : super(key: key);
   final String? hintText;
   final IconData icon;

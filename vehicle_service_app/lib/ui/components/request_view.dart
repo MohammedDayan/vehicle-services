@@ -121,7 +121,7 @@ class manageRequest extends StatelessWidget {
                         padding:
                             const EdgeInsets.symmetric(
                                 horizontal: 30,
-                                vertical: 20)),
+                                vertical: 10)),
                     onPressed: () {
                     },
                   ),
@@ -142,7 +142,7 @@ class manageRequest extends StatelessWidget {
                         padding:
                             const EdgeInsets.symmetric(
                                 horizontal: 30,
-                                vertical: 20)),
+                                vertical: 10)),
                     onPressed: () {
                     },
                   ),
