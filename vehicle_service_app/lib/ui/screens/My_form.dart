@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:vehicle_service_app/config/constants.dart';
+import 'package:intl/intl.dart';
 
 final startDate = TextEditingController();
 final returnDate = TextEditingController();
 
-class OrderForm extends StatelessWidget {
+class OrderForm extends StatefulWidget {
   const OrderForm({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<OrderForm> createState() => _OrderFormState();
+}
+
+class _OrderFormState extends State<OrderForm> {
+  TextEditingController _date = TextEditingController();
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
@@ -44,7 +51,7 @@ class OrderForm extends StatelessWidget {
                   padding:
                       EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 20),
                   child: TextFormField(
-                    controller: startDate,
+                    controller: _date,
                     cursorColor: kPrimaryColor,
                     /*initialValue: widget.user.fullName,
                     onSaved: (val) => widget.user.fullName = val,
@@ -64,6 +71,13 @@ class OrderForm extends StatelessWidget {
                           initialDate: DateTime.now(),
                           firstDate: DateTime(2000),
                           lastDate: DateTime(2101));
+
+                      if (pickeddate != null) {
+                        setState(() {
+                          _date.text =
+                              DateFormat('yyyy-MM-dd').format(pickeddate);
+                        });
+                      }
                     },
                   ),
                 ),
@@ -90,6 +104,13 @@ class OrderForm extends StatelessWidget {
                           initialDate: DateTime.now(),
                           firstDate: DateTime(2000),
                           lastDate: DateTime(2101));
+
+                      if (pickeddate != null) {
+                        setState(() {
+                          _date.text =
+                              DateFormat('yyyy-MM-dd').format(pickeddate);
+                        });
+                      }
                     },
                   ),
                 ),

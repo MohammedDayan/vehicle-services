@@ -22,6 +22,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailcontroller = TextEditingController();
   final _passwordcontroller = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   bool loading = false;
 
@@ -76,6 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               fontWeight: FontWeight.w600),
                         ),
                         Form(
+                          key: _formKey,
                           child: Column(
                             children: [
                               RoundedInputField(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vehicle_service_app/config/constants.dart';
+import 'package:intl/intl.dart';
 
 import 'package:vehicle_service_app/ui/widgets/widgets.dart';
 
@@ -85,6 +86,8 @@ class _OrderCarScreenState extends State<OrderCarScreen> {
 
   Widget OrderForm() {
     Size size = MediaQuery.of(context).size;
+    TextEditingController _startdate = TextEditingController();
+    TextEditingController _returndate = TextEditingController();
 
     return Padding(
       padding: EdgeInsets.only(left: 20, right: 20, top: 10),
@@ -138,6 +141,13 @@ class _OrderCarScreenState extends State<OrderCarScreen> {
                           initialDate: DateTime.now(),
                           firstDate: DateTime(2000),
                           lastDate: DateTime(2101));
+
+                      if (pickeddate != null) {
+                        setState(() {
+                          _startdate.text =
+                              DateFormat('yyyy-MM-dd').format(pickeddate);
+                        });
+                      }
                     },
                   ),
                 ),
@@ -164,6 +174,13 @@ class _OrderCarScreenState extends State<OrderCarScreen> {
                           initialDate: DateTime.now(),
                           firstDate: DateTime(2000),
                           lastDate: DateTime(2101));
+
+                      if (pickeddate != null) {
+                        setState(() {
+                          _returndate.text =
+                              DateFormat('yyyy-MM-dd').format(pickeddate);
+                        });
+                      }
                     },
                   ),
                 ),

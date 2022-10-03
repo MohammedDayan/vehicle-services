@@ -110,6 +110,7 @@ flutter:
       - assets/honda-logo.png
       - assets/toyota-logo.png
       - assets/jaguar-logo.png
+      - assets/lexus-logo.png
       - assets/car-loader.json
       - assets/car-safety.json
 

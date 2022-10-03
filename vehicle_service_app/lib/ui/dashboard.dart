@@ -152,12 +152,12 @@ class _HomepageState extends State<Homepage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            brand(myimage: "assets/Lexus.jpg", name: 'Jaguar'),
-                            brand(myimage: "assets/Lexus.jpg", name: 'Toyota'),
+                            brand(myimage: "assets/jaguar-logo.png", name: 'Jaguar'),
+                            brand(myimage: "assets/lexus-logo.png", name: 'Lexus'),
                             brand(myimage: "assets/bmw.jpg", name: 'BMW'),
-                            brand(myimage: "assets/Lexus.jpg", name: 'Honda'),
-                            brand(myimage: "assets/Lexus.jpg", name: 'Audi'),
-                            brand(myimage: "assets/Lexus.jpg", name: 'Benz'),
+                            brand(myimage: "assets/honda-logo.png", name: 'Honda'),
+                            brand(myimage: "assets/audi-logo.png", name: 'Audi'),
+                            brand(myimage: "assets/benz-logo.png", name: 'Benz'),
                             // brand(myimage: "assets/images/lexus-logo.jpg", name: 'Lexus'),
                           ],
                         ),
