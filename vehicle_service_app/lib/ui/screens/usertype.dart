@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vehicle_service_app/ui/screens/carOwnerView.dart';
+import 'package:vehicle_service_app/ui/screens/new_dash.dart';
 
 import '../../config/constants.dart';
 import '../dashboard.dart';
@@ -68,7 +69,7 @@ class _userTypeState extends State<userType> {
     switch (_user) {
       case UserType.individual:
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Homepage()));
+            context, MaterialPageRoute(builder: (context) => HomeDash()));
         // save usertype using user model for future login
         break;
       case UserType.renter:

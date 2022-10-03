@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:vehicle_service_app/config/constants.dart';
+import 'package:intl/intl.dart';
 
 
-class OrderForm extends StatelessWidget {
+class OrderForm extends StatefulWidget {
   const OrderForm({ Key? key,}) : super(key: key);
 
+  @override
+  State<OrderForm> createState() => _OrderFormState();
+  
+}
+
+class _OrderFormState extends State<OrderForm> {
+  TextEditingController _date = TextEditingController();
    Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
@@ -41,6 +49,7 @@ class OrderForm extends StatelessWidget {
                  Padding(
                   padding: EdgeInsets.only(left: 16, right: 16, top: 16,bottom: 20),
                   child: TextFormField(
+                    controller: _date,
                     cursorColor: kPrimaryColor,
                     /*initialValue: widget.user.fullName,
                     onSaved: (val) => widget.user.fullName = val,
@@ -59,9 +68,15 @@ class OrderForm extends StatelessWidget {
                     onTap: () async{
                       DateTime? pickeddate = await showDatePicker(
                         context: context,
-                          initialDate: DateTime.now(), firstDate: DateTime(2000), 
-                          lastDate: DateTime(2101)
-                      );
+                          initialDate: DateTime.now(), 
+                          firstDate: DateTime(2000), 
+                          lastDate: DateTime(2101));
+
+                          if (pickeddate !=null){
+                            setState(() {
+                              _date.text = DateFormat('yyyy-MM-dd').format(pickeddate);
+                            });
+                          }
                     },
                   ),
                 ),
@@ -79,6 +94,20 @@ class OrderForm extends StatelessWidget {
                       icon: Icon(Icons.calendar_month),
                       isDense: true,
                     ),
+
+                    onTap: () async{
+                      DateTime? pickeddate = await showDatePicker(
+                        context: context,
+                          initialDate: DateTime.now(), 
+                          firstDate: DateTime(2000), 
+                          lastDate: DateTime(2101));
+
+                          if (pickeddate !=null){
+                            setState(() {
+                              _date.text = DateFormat('yyyy-MM-dd').format(pickeddate);
+                            });
+                          }
+                    },
                   ),
                 ),
 
@@ -139,5 +168,4 @@ class OrderForm extends StatelessWidget {
       ),
     );
       }
-
 }
