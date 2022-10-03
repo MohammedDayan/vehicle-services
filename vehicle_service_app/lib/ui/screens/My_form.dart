@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:vehicle_service_app/config/constants.dart';
 
+final startDate = TextEditingController();
+final returnDate = TextEditingController();
 
 class OrderForm extends StatelessWidget {
-  const OrderForm({ Key? key,}) : super(key: key);
+  const OrderForm({
+    Key? key,
+  }) : super(key: key);
 
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
     return Padding(
@@ -16,15 +20,13 @@ class OrderForm extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         child: Theme(
           data: Theme.of(context).copyWith(
-            inputDecorationTheme: InputDecorationTheme(
-              focusColor: kPrimaryColor,
-              fillColor: kPrimaryColor,
-              iconColor: kPrimaryColor,
-              labelStyle: TextStyle(
-                // color: kPrimaryColor
-              )
-            )
-          ),
+              inputDecorationTheme: InputDecorationTheme(
+                  focusColor: kPrimaryColor,
+                  fillColor: kPrimaryColor,
+                  iconColor: kPrimaryColor,
+                  labelStyle: TextStyle(
+                      // color: kPrimaryColor
+                      ))),
           child: Form(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -33,76 +35,86 @@ class OrderForm extends StatelessWidget {
                   leading: Icon(Icons.verified_user),
                   elevation: 0,
                   title: Text('Booking Details'),
-                  backgroundColor: kPrimaryColor,//Theme.of(context).accentColor,
+                  backgroundColor:
+                      kPrimaryColor, //Theme.of(context).accentColor,
                   centerTitle: true,
-                  
                 ),
-        
-                 Padding(
-                  padding: EdgeInsets.only(left: 16, right: 16, top: 16,bottom: 20),
+
+                Padding(
+                  padding:
+                      EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 20),
                   child: TextFormField(
+                    controller: startDate,
                     cursorColor: kPrimaryColor,
                     /*initialValue: widget.user.fullName,
                     onSaved: (val) => widget.user.fullName = val,
+                    */
                     validator: (val) =>
-                        val.length > 3 ? null : 'Full name is invalid',*/
-                    decoration: InputDecoration(
+                        val!.length > 3 ? null : ' Date cant be null',
+                    decoration: const InputDecoration(
                       labelText: 'Start Date',
                       hintText: 'Select start date',
                       icon: Icon(Icons.calendar_month),
                       isDense: true,
-                      border: UnderlineInputBorder(
-                        
-                      ),
-        
+                      border: UnderlineInputBorder(),
                     ),
-                    onTap: () async{
+                    onTap: () async {
                       DateTime? pickeddate = await showDatePicker(
-                        context: context,
-                          initialDate: DateTime.now(), firstDate: DateTime(2000), 
-                          lastDate: DateTime(2101)
-                      );
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2101));
                     },
                   ),
                 ),
-        
-                 Padding(
+
+                Padding(
                   padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
                   child: TextFormField(
-                   /* initialValue: widget.user.email,
+                    controller: returnDate,
+                    /* initialValue: widget.user.email,
                     onSaved: (val) => widget.user.email = val,
                     validator: (val) =>
                         val.contains('@') ? null : 'Email is invalid',*/
-                    decoration: InputDecoration(
+                    validator: (val) =>
+                        val!.length > 3 ? null : ' Date cant be null',
+                    decoration: const InputDecoration(
                       labelText: 'Return Date',
                       hintText: 'Select Return date',
                       icon: Icon(Icons.calendar_month),
                       isDense: true,
                     ),
+                    onTap: () async {
+                      DateTime? pickeddate = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2101));
+                    },
                   ),
                 ),
 
-                  Padding(
+                Padding(
                   padding: EdgeInsets.only(left: 16, right: 16, bottom: 10),
                   child: TextFormField(
-                   /* initialValue: widget.user.email,
+                    enabled: false,
+                    /* initialValue: widget.user.email,
                     onSaved: (val) => widget.user.email = val,
                     validator: (val) =>
                         val.contains('@') ? null : 'Email is invalid',*/
                     decoration: InputDecoration(
                       labelText: 'Pickup Location',
-                      hintText: 'Enter pickup location',
+                      hintText: 'Your Pickup location is' + '',
                       icon: Icon(Icons.location_on),
                       isDense: true,
                     ),
                   ),
                 ),
 
-        
-                  Padding(
+                Padding(
                   padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
                   child: TextFormField(
-                   /* initialValue: widget.user.email,
+                    /* initialValue: widget.user.email,
                     onSaved: (val) => widget.user.email = val,
                     validator: (val) =>
                         val.contains('@') ? null : 'Email is invalid',*/
@@ -114,9 +126,7 @@ class OrderForm extends StatelessWidget {
                     ),
                   ),
                 ),
-        
-                
-        
+
                 //   Padding(
                 //   padding: EdgeInsets.only(left: 16, right: 16, bottom: 10),
                 //   child: TextFormField(
@@ -131,13 +141,12 @@ class OrderForm extends StatelessWidget {
                 //       isDense: true,
                 //     ),
                 //   ),
-                // ),        
+                // ),
               ],
             ),
           ),
         ),
       ),
     );
-      }
-
+  }
 }

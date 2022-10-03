@@ -30,13 +30,13 @@ class _HomepageState extends State<Homepage> {
     super.initState();
 
     {
-      WidgetsBinding.instance?.addPostFrameCallback((_) => {
-            if (user.photoURL == null && user.displayName == null)
-              {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => updateProfile()))
-              }
-          });
+      // WidgetsBinding.instance.addPostFrameCallback((_) => {
+      //       if (user.photoURL == null && user.displayName == null)
+      //         {
+      //           Navigator.push(context,
+      //               MaterialPageRoute(builder: (context) => updateProfile()))
+      //         }
+      //     });
     }
   }
 

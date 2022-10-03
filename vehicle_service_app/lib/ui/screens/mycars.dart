@@ -1,12 +1,14 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:vehicle_service_app/config/constants.dart';
 import 'package:vehicle_service_app/model/car.dart';
 import 'package:vehicle_service_app/ui/recentcars.dart';
+import 'package:vehicle_service_app/ui/screens/Branches.dart';
 import 'package:vehicle_service_app/ui/screens/My_form.dart';
 import 'package:vehicle_service_app/ui/screens/lessor_info_screen.dart';
 import 'package:vehicle_service_app/ui/screens/manage_car_screen.dart';
@@ -50,6 +52,11 @@ class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
 
   late String carImgUrl;
 
+  final loggeduser = FirebaseAuth.instance.currentUser!;
+
+  List BranchL = ['Kumasi', 'Accra'];
+
+  var branch = '';
   void _openimagePicker() async {
     final XFile? pickedImage =
         await _picker.pickImage(source: ImageSource.gallery);
@@ -161,12 +168,45 @@ class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
                         icon: Icons.attach_money,
                         hintText: "Hourly Rate",
                       ),
-                      RoundedInputField(
-                        controller: location,
-                        icon: Icons.location_pin,
-                        hintText: "Current Location of Car",
+                      // RoundedInputField(
+                      //   controller: location,
+                      //   icon: Icons.location_pin,
+                      //   hintText: "Branch/Location of Car",
+                      // ),
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Select Branch/location',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            DropdownButton(
+                                hint: Text(branch),
+                                items: ['Kumasi', 'Accra'].map((String value) {
+                                  return DropdownMenuItem(
+                                    value: value,
+                                    child: Text(
+                                      value,
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  setState(() {
+                                    branch = value.toString();
+                                  });
+                                }),
+                          ],
+                        ),
                       ),
-                      SizedBox(
+
+                      const SizedBox(
                         height: 30.0,
                       ),
                       Container(
@@ -283,7 +323,7 @@ class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
                       onSaved: (val) => widget.user.fullName = val,
                       validator: (val) =>
                           val.length > 3 ? null : 'Full name is invalid',*/
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                           labelText: 'Car Speed',
                           hintText: 'Enter the Car speed',
                           icon: Icon(Icons.speed),
@@ -292,14 +332,15 @@ class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
+                    padding:
+                        const EdgeInsets.only(left: 16, right: 16, bottom: 20),
                     child: TextFormField(
                       controller: enginType,
                       /* initialValue: widget.user.email,
                       onSaved: (val) => widget.user.email = val,
                       validator: (val) =>
                           val.contains('@') ? null : 'Email is invalid',*/
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Engine type',
                         hintText: 'Enter the Engine type',
                         icon: Icon(Icons.escalator),
@@ -331,7 +372,7 @@ class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
                       onSaved: (val) => widget.user.email = val,
                       validator: (val) =>
                           val.contains('@') ? null : 'Email is invalid',*/
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Power',
                         hintText: 'Enter the house power',
                         icon: Icon(Icons.location_on),
@@ -402,7 +443,8 @@ class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
                             amount: amount.text,
                             currency: 'Ghc',
                             dur: '1'));
-                        db.collection("Cars").add({
+                        var docRef = db.collection("Cars").doc();
+                        final data = ({
                           "speed": speed.text,
                           "tankCapacity": tankCapacity.text,
                           "fuelLevel": fuelLevel.text,
@@ -418,8 +460,13 @@ class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
                           "city": location.text,
                           "amount": amount.text,
                           "currency": 'Ghc',
-                          "dur": '1'
+                          "dur": '1',
+                          "carid": docRef.id,
+                          "ownerid": loggeduser.uid
                         });
+
+                        docRef.set(data);
+
                         Navigator.push(
                             context,
                             MaterialPageRoute(

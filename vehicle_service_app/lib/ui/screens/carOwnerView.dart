@@ -11,6 +11,7 @@ import 'package:vehicle_service_app/ui/widgets/drawer.dart';
 import 'package:vehicle_service_app/ui/widgets/search_cars.dart';
 
 import 'available_cars.dart';
+import 'companyInfo.dart';
 import 'companyprofile.dart';
 import 'manage_car_screen.dart';
 
@@ -36,7 +37,7 @@ class _HomepageState extends State<carOwnersView> {
             if (user.photoURL == null && user.displayName == null)
               {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => updateProfile()))
+                    MaterialPageRoute(builder: (context) => companyProfile()))
               }
           });
     }
@@ -80,7 +81,7 @@ class _HomepageState extends State<carOwnersView> {
                 home(),
                 requests(),
                 manageCar(),
-                lessorInfo(),
+                companyInfo(),
               ],
             ),
           ),

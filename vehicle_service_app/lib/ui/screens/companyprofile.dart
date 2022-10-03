@@ -4,22 +4,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:vehicle_service_app/ui/dashboard.dart';
+import 'package:vehicle_service_app/ui/screens/Branches.dart';
 import 'package:vehicle_service_app/ui/screens/login_screen.dart';
 import 'package:vehicle_service_app/ui/widgets/rounded_input_field.dart';
 import 'package:image_picker/image_picker.dart';
 
-class updateProfile extends StatefulWidget {
-  updateProfile({Key? key}) : super(key: key);
+class companyProfile extends StatefulWidget {
+  companyProfile({Key? key}) : super(key: key);
 
   @override
-  State<updateProfile> createState() => _updateProfileState();
+  State<companyProfile> createState() => _companyProfileState();
 }
 
-class _updateProfileState extends State<updateProfile> {
+class _companyProfileState extends State<companyProfile> {
   final _formKey = GlobalKey<FormState>();
   final name = TextEditingController();
   final phone = TextEditingController();
   final nationalID = TextEditingController();
+  final tin = TextEditingController();
   final gps = TextEditingController();
   final licenceNo = TextEditingController();
   late final urlDownloadProf;
@@ -73,6 +75,7 @@ class _updateProfileState extends State<updateProfile> {
         'name': name.text,
         'phone': phone.text,
         'nationalid': nationalID.text,
+        'Tin': tin.text,
         'profileImg': urlDownloadProf,
         'LisenceImg': urlDownloadLi,
       }).then((value) => print('data uploaded to firebase database'));
@@ -126,18 +129,23 @@ class _updateProfileState extends State<updateProfile> {
             RoundedInputField(
               controller: nationalID,
               icon: Icons.location_city,
-              hintText: "National ID No",
+              hintText: "National ID No of business Owner",
             ),
             RoundedInputField(
-              controller: gps,
-              icon: Icons.maps_home_work,
-              hintText: "Current Address ",
+              controller: tin,
+              icon: Icons.location_city,
+              hintText: "Tax Identification No (TIN)",
             ),
-            RoundedInputField(
-              controller: gps,
-              icon: Icons.maps_home_work,
-              hintText: "State Branches if any ",
-            ),
+            // RoundedInputField(
+            //   controller: gps,
+            //   icon: Icons.maps_home_work,
+            //   hintText: "Current Address ",
+            // ),
+            // RoundedInputField(
+            //   controller: gps,
+            //   icon: Icons.maps_home_work,
+            //   hintText: "State Branches if any ",
+            // ),
             InkWell(
               onTap: () {
                 _openimagePickerLisence();
@@ -151,10 +159,10 @@ class _updateProfileState extends State<updateProfile> {
                       image: DecorationImage(
                         image: _imageLisence != null
                             ? FileImage(_imageLisence!) as ImageProvider
-                            : AssetImage('assets/images/driverLicense.png'),
+                            : AssetImage('assets/images/businessCert.png'),
                       ),
                     ),
-                    child: Text("Tap to upload Image of Driver License "),
+                    child: Text("Tap to upload Image of License of Business "),
                   );
                 }),
               ),
@@ -171,7 +179,7 @@ class _updateProfileState extends State<updateProfile> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const LoginScreen())),
+                                builder: (context) => manageBranches())),
                       });
 
                   //

@@ -12,7 +12,6 @@ import 'package:vehicle_service_app/ui/screens/OrderCar_screen.dart';
 import 'package:vehicle_service_app/ui/screens/login_screen.dart';
 import 'package:vehicle_service_app/ui/screens/map_order.dart';
 
-
 class MyOrder extends StatefulWidget {
   const MyOrder({Key? key, required this.car}) : super(key: key);
   final car;
@@ -211,11 +210,14 @@ class _MyOrderState extends State<MyOrder> {
                                                       vertical: 20)),
                                           onPressed: () {
                                             //tying required user details to process order
+
                                             Navigator.push(
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      const OrderCarScreen(),
+                                                      OrderCarScreen(
+                                                    car: widget.car,
+                                                  ),
                                                 ));
                                           },
                                         ),
