@@ -47,15 +47,22 @@ class OrderForm extends StatelessWidget {
                     validator: (val) =>
                         val.length > 3 ? null : 'Full name is invalid',*/
                     decoration: InputDecoration(
-                      labelText: 'Full Name',
-                      hintText: 'Enter your full name',
-                      icon: Icon(Icons.person),
+                      labelText: 'Start Date',
+                      hintText: 'Select start date',
+                      icon: Icon(Icons.calendar_month),
                       isDense: true,
                       border: UnderlineInputBorder(
                         
-                      )
+                      ),
         
                     ),
+                    onTap: () async{
+                      DateTime? pickeddate = await showDatePicker(
+                        context: context,
+                          initialDate: DateTime.now(), firstDate: DateTime(2000), 
+                          lastDate: DateTime(2101)
+                      );
+                    },
                   ),
                 ),
         
@@ -67,78 +74,14 @@ class OrderForm extends StatelessWidget {
                     validator: (val) =>
                         val.contains('@') ? null : 'Email is invalid',*/
                     decoration: InputDecoration(
-                      labelText: 'Email Address',
-                      hintText: 'Enter your email',
-                      icon: Icon(Icons.email),
-                      isDense: true,
-                    ),
-                  ),
-                ),
-
-                  Padding(
-                  padding: EdgeInsets.only(left: 16, right: 16, bottom: 10),
-                  child: TextFormField(
-                   /* initialValue: widget.user.email,
-                    onSaved: (val) => widget.user.email = val,
-                    validator: (val) =>
-                        val.contains('@') ? null : 'Email is invalid',*/
-                    decoration: InputDecoration(
-                      labelText: 'National ID No',
-                      hintText: 'Enter your National ID No',
-                      icon: Icon(Icons.location_city),
-                      isDense: true,
-                    ),
-                  ),
-                ),
-
-                  Padding(
-                  padding: EdgeInsets.only(left: 16, right: 16, bottom: 10),
-                  child: TextFormField(
-                   /* initialValue: widget.user.email,
-                    onSaved: (val) => widget.user.email = val,
-                    validator: (val) =>
-                        val.contains('@') ? null : 'Email is invalid',*/
-                    decoration: InputDecoration(
-                      labelText: 'GPS Address',
-                      hintText: 'Enter your GPS Address',
-                      icon: Icon(Icons.location_on),
-                      isDense: true,
-                    ),
-                  ),
-                ),
-        
-                  Padding(
-                  padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
-                  child: TextFormField(
-                   /* initialValue: widget.user.email,
-                    onSaved: (val) => widget.user.email = val,
-                    validator: (val) =>
-                        val.contains('@') ? null : 'Email is invalid',*/
-                    decoration: InputDecoration(
-                      labelText: 'Start Date',
-                      hintText: 'Enter your start date',
-                      icon: Icon(Icons.calendar_today),
-                      isDense: true,
-                    ),
-                  ),
-                ),
-        
-                  Padding(
-                  padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
-                  child: TextFormField(
-                   /* initialValue: widget.user.email,
-                    onSaved: (val) => widget.user.email = val,
-                    validator: (val) =>
-                        val.contains('@') ? null : 'Email is invalid',*/
-                    decoration: InputDecoration(
                       labelText: 'Return Date',
-                      hintText: 'Enter date your return date',
+                      hintText: 'Select Return date',
                       icon: Icon(Icons.calendar_month),
                       isDense: true,
                     ),
                   ),
                 ),
-        
+
                   Padding(
                   padding: EdgeInsets.only(left: 16, right: 16, bottom: 10),
                   child: TextFormField(
@@ -147,13 +90,48 @@ class OrderForm extends StatelessWidget {
                     validator: (val) =>
                         val.contains('@') ? null : 'Email is invalid',*/
                     decoration: InputDecoration(
-                      labelText: 'Pickup location',
-                      hintText: 'Enter your pickup location',
+                      labelText: 'Pickup Location',
+                      hintText: 'Enter pickup location',
                       icon: Icon(Icons.location_on),
                       isDense: true,
                     ),
                   ),
-                ),        
+                ),
+
+        
+                  Padding(
+                  padding: EdgeInsets.only(left: 16, right: 16, bottom: 20),
+                  child: TextFormField(
+                   /* initialValue: widget.user.email,
+                    onSaved: (val) => widget.user.email = val,
+                    validator: (val) =>
+                        val.contains('@') ? null : 'Email is invalid',*/
+                    decoration: InputDecoration(
+                      labelText: 'Return location',
+                      hintText: 'Enter Return Location',
+                      icon: Icon(Icons.location_on),
+                      isDense: true,
+                    ),
+                  ),
+                ),
+        
+                
+        
+                //   Padding(
+                //   padding: EdgeInsets.only(left: 16, right: 16, bottom: 10),
+                //   child: TextFormField(
+                //    /* initialValue: widget.user.email,
+                //     onSaved: (val) => widget.user.email = val,
+                //     validator: (val) =>
+                //         val.contains('@') ? null : 'Email is invalid',*/
+                //     decoration: InputDecoration(
+                //       labelText: 'Pickup location',
+                //       hintText: 'Enter your pickup location',
+                //       icon: Icon(Icons.location_on),
+                //       isDense: true,
+                //     ),
+                //   ),
+                // ),        
               ],
             ),
           ),

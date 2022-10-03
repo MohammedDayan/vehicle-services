@@ -9,6 +9,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:vehicle_service_app/config/constants.dart';
 import 'package:vehicle_service_app/ui/components/request_view.dart';
 import 'package:vehicle_service_app/ui/screens/updateprofile.dart';
+import '../widgets/datepicker_field.dart';
 import '../widgets/rounded_input_field.dart';
 
 
@@ -106,37 +107,35 @@ class _mapOrderState extends State<mapOrder> {
                                      Column(
                                        children: [
                                          Center(
-                                            child: Container(
-                                              child: RoundedInputField(
-                                                controller: _date,
-                                                
-                                                icon: Icons.calendar_month,
-                                                hintText: "Enter Start Date",
-                                              ),
+                                            child: DatePickerField(
+                                              controller: _date, 
+                                              icon: Icons.calendar_month,
+                                              hintText: "Select Start Date",
+                                              onTap: () async{
+                                                DateTime? pickeddate = await showDatePicker(
+                                                  context: context,
+                                                   initialDate: DateTime.now(), firstDate: DateTime(2000), 
+                                                   lastDate: DateTime(2101)
+                                                );
+                                              }, 
                                             ),
                                           ),
                                           Center(
-                                            child: Container(
-                                              child: RoundedInputField(
-                                                icon: Icons.calendar_month,
-                                                hintText: "Enter Return Date",
-                                              ),
+                                            child: RoundedInputField(
+                                              icon: Icons.calendar_month,
+                                              hintText: "Enter Return Date",
                                             ),
                                           ),
                                           Center(
-                                            child: Container(
-                                              child: RoundedInputField(
-                                                icon: Icons.location_on,
-                                                hintText: "Enter Pickup location",
-                                              ),
+                                            child: RoundedInputField(
+                                              icon: Icons.location_on,
+                                              hintText: "Enter Pickup location",
                                             ),
                                           ),
                                           Center(
-                                            child: Container(
-                                              child: RoundedInputField(
-                                                icon: Icons.location_on,
-                                                hintText: "Enter Return location",
-                                              ),
+                                            child: RoundedInputField(
+                                              icon: Icons.location_on,
+                                              hintText: "Enter Return location",
                                             ),
                                           ),
 

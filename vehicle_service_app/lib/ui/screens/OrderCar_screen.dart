@@ -29,13 +29,14 @@ class _OrderCarScreenState extends State<OrderCarScreen> {
           child: Container(
             width: size.width,
             height: size.height,
-            decoration:  BoxDecoration(
-             // color: Colors.green.withOpacity(0.5),
-                image: DecorationImage(
-              image: AssetImage('assets/jaguar.jpg'),
-              colorFilter: ColorFilter.mode(Colors.blueGrey, BlendMode.modulate,),
-              fit: BoxFit.cover,
-            ),),
+            color: Colors.white,
+            // decoration:  BoxDecoration(
+            //  // color: Colors.green.withOpacity(0.5),
+            //     image: DecorationImage(
+            //   image: AssetImage('assets/jaguar.jpg'),
+            //   colorFilter: ColorFilter.mode(Colors.blueGrey, BlendMode.modulate,),
+            //   fit: BoxFit.cover,
+            // ),),
               child: Column(
                // mainAxisAlignment: MainAxisAlignment.center,
               children: [   
