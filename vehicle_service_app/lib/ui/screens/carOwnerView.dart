@@ -9,9 +9,9 @@ import 'package:vehicle_service_app/ui/screens/lessor_info_screen.dart';
 import 'package:vehicle_service_app/ui/screens/mycars.dart';
 import 'package:vehicle_service_app/ui/widgets/drawer.dart';
 import 'package:vehicle_service_app/ui/widgets/search_cars.dart';
-import 'package:vehicle_service_app/ui/screens/updateprofile.dart';
 
 import 'available_cars.dart';
+import 'companyprofile.dart';
 import 'manage_car_screen.dart';
 
 class carOwnersView extends StatefulWidget {
@@ -32,13 +32,13 @@ class _HomepageState extends State<carOwnersView> {
     super.initState();
 
     {
-      // WidgetsBinding.instance?.addPostFrameCallback((_) => {
-      //       if (user.photoURL == null && user.displayName == null)
-      //         {
-      //           Navigator.push(context,
-      //               MaterialPageRoute(builder: (context) => updateProfile()))
-      //         }
-      //     });
+      WidgetsBinding.instance.addPostFrameCallback((_) => {
+            if (user.photoURL == null && user.displayName == null)
+              {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => updateProfile()))
+              }
+          });
     }
   }
 

@@ -41,8 +41,6 @@ class _updateProfileState extends State<updateProfile> {
         _imgName = File(pickedImage.name);
       });
       upload(_image, _imgName, url);
-      print('has download url for prof been initialized?');
-      print(urlDownloadProf);
     }
   }
 
@@ -50,7 +48,7 @@ class _updateProfileState extends State<updateProfile> {
   var _imgNameLisence;
 
   void _openimagePickerLisence() async {
-    const String url = 'licenseimg/';
+    const String url = 'businessLicenseimg/';
     final XFile? pickedImageLi =
         await _pickerLi.pickImage(source: ImageSource.gallery);
 
@@ -135,6 +133,11 @@ class _updateProfileState extends State<updateProfile> {
               icon: Icons.maps_home_work,
               hintText: "Current Address ",
             ),
+            RoundedInputField(
+              controller: gps,
+              icon: Icons.maps_home_work,
+              hintText: "State Branches if any ",
+            ),
             InkWell(
               onTap: () {
                 _openimagePickerLisence();
@@ -192,7 +195,7 @@ class _updateProfileState extends State<updateProfile> {
         .then(
           (value) async => {
             await value.ref.getDownloadURL().then((value) => {
-                  if (url == 'licenseimg/')
+                  if (url == 'businessLicenseimg/')
                     {
                       urlDownloadLi = value,
                       print('Linsenceurl inialized with value: ' +
