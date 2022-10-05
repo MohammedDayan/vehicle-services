@@ -44,12 +44,20 @@ class _manageRequestState extends State<manageRequest> {
     widget.getuserinfo();
   }
 
+  // final fbref = FirebaseFirestore.instance
+  //     .collection('users')
+  //     .doc(userDocId)
+  //     .collection('orders');
+
+  // Stream<QuerySnapshot<Object?>> get _orderStream async {
+  //   print("inside stream");
+  //   return await fbref.snapshots();
+  // }
   final Stream<QuerySnapshot> _orderStream = FirebaseFirestore.instance
-      .collection('users')
+      .collection('user')
       .doc(userDocId)
       .collection('orders')
       .snapshots();
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -81,134 +89,145 @@ class _manageRequestState extends State<manageRequest> {
                       borderRadius: BorderRadius.circular(20.0),
                       color: Colors.grey[300],
                     ),
-                    child: Column(
+                    child: ListView(
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            border: Border(
-                                bottom: BorderSide(
-                                    color: Colors.blueGrey.withOpacity(0.2))),
-                          ),
-                          child: ListTile(
-                            //car details here
-                            //textColor: Colors.red,
-                            //shape: Border.all(width: 1, color: Colors.grey),
-                            title: Text('Jaguar'),
-                            leading: Image.asset('assets/jaguar.jpg'),
-                            subtitle: Text('Pirana 2000'),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(10),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color: Colors.blueGrey.withOpacity(0.2))),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(
+                                        color:
+                                            Colors.blueGrey.withOpacity(0.2))),
+                              ),
+                              child: ListTile(
+                                //car details here
+                                //textColor: Colors.red,
+                                //shape: Border.all(width: 1, color: Colors.grey),
+                                title: Text(data['carname']),
+                                leading: Image.network(data['carimg']),
+                                subtitle: Text(data['descrip']),
+                              ),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    //some of user datails here
-                                    CircleAvatar(
-                                      radius: 20,
-                                      backgroundImage: NetworkImage(
-                                        data['customerImg'],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-
-                                    Text(
-                                      data['name'],
-                                      style: TextStyle(
-                                        fontSize: 17,
-                                      ),
-                                    ),
-                                  ],
+                            Container(
+                              padding: EdgeInsets.all(10),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: Colors.blueGrey
+                                              .withOpacity(0.2))),
                                 ),
-                                Row(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Icon(Icons.location_on),
-                                    Text('Ayeduase')
-                                  ],
-                                ),
-                                FocusedMenuHolder(
-                                  menuItems: [
-                                    //more of user details here
-                                    FocusedMenuItem(
-                                      title: Text('Name:'),
-                                      onPressed: () {},
-                                    ),
-                                    FocusedMenuItem(
-                                      title: Text('Contact:'),
-                                      onPressed: () {},
-                                    ),
-                                    FocusedMenuItem(
-                                      title: Column(children: [
-                                        Text('age:'),
-                                        SizedBox(
-                                          height: 10,
+                                    Row(
+                                      children: [
+                                        //some of user datails here
+                                        CircleAvatar(
+                                          radius: 20,
+                                          backgroundImage: NetworkImage(
+                                            data['customerImg'],
+                                          ),
                                         ),
-                                        Image.network('')
-                                      ]),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+
+                                        Text(
+                                          data['name'],
+                                          style: TextStyle(
+                                            fontSize: 17,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(Icons.location_on),
+                                        Text(data['location'])
+                                      ],
+                                    ),
+                                    FocusedMenuHolder(
+                                      menuItems: [
+                                        //more of user details here
+                                        FocusedMenuItem(
+                                          title: Text('Name:' + data['name']),
+                                          onPressed: () {},
+                                        ),
+                                        FocusedMenuItem(
+                                          title:
+                                              Text('Contact:' + data['phone']),
+                                          onPressed: () {},
+                                        ),
+                                        FocusedMenuItem(
+                                          title: Column(children: [
+                                            Text('age:'),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Image.network(data['customerImg']),
+                                          ]),
+                                          onPressed: () {},
+                                        )
+                                      ],
                                       onPressed: () {},
+                                      openWithTap: true,
+                                      child: Text(
+                                        'View more',
+                                        style: TextStyle(
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                      ),
                                     )
                                   ],
-                                  onPressed: () {},
-                                  openWithTap: true,
-                                  child: Text(
-                                    'View more',
-                                    style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                )
-                              ],
+                                ),
+                              ),
                             ),
-                          ),
+                            Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ElevatedButton(
+                                    child: const Text(
+                                      'Decline',
+                                      // style: TextStyle(fontSize: 10),
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        primary: Colors.red.withOpacity(0.5),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 30, vertical: 10)),
+                                    onPressed: () {},
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  ElevatedButton(
+                                    child: const Text(
+                                      'Accept',
+                                      // style: TextStyle(fontSize: 10),
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
+                                        ),
+                                        primary: Colors.blueGrey[200],
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 30, vertical: 10)),
+                                    onPressed: () {},
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
                         ),
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ElevatedButton(
-                                child: const Text(
-                                  'Decline',
-                                  // style: TextStyle(fontSize: 10),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    primary: Colors.red.withOpacity(0.5),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 30, vertical: 10)),
-                                onPressed: () {},
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              ElevatedButton(
-                                child: const Text(
-                                  'Accept',
-                                  // style: TextStyle(fontSize: 10),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
-                                    primary: Colors.blueGrey[200],
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 30, vertical: 10)),
-                                onPressed: () {},
-                              ),
-                            ],
-                          ),
-                        )
                       ],
                     ),
                   );
