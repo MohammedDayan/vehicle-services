@@ -43,6 +43,7 @@ class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
   final amount = TextEditingController();
   final currency = TextEditingController();
   final duration = TextEditingController();
+  TextEditingController _location = TextEditingController();
 
   final Vehicle_no = TextEditingController();
   File? _image;
@@ -168,6 +169,7 @@ class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
                         icon: Icons.attach_money,
                         hintText: "Hourly Rate",
                       ),
+  
                       // RoundedInputField(
                       //   controller: location,
                       //   icon: Icons.location_pin,
@@ -484,3 +486,7 @@ class _myCarsState extends State<myCars> with SingleTickerProviderStateMixin {
     );
   }
 }
+
+
+
+

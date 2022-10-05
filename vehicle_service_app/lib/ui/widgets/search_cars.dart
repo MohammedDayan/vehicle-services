@@ -26,6 +26,14 @@ class SearchCars extends SearchDelegate<Car> {
         itemBuilder: (_, i) => ListTile(
               title: Text(results[i].name),
               subtitle: Text(results[i].descip),
+              // onTap: (){
+              //   Navigator.push(
+              // context,
+              // MaterialPageRoute(
+              //     builder: (context) => MyOrder(
+              //           car: results[i].imgurl,
+              //         )));
+              // },
             ));
   }
 
@@ -45,6 +53,14 @@ class SearchCars extends SearchDelegate<Car> {
               leading: Image.asset(suggestions[i].imgurl),
               title: Text(suggestions[i].name),
               subtitle: Text(suggestions[i].descip),
+              //  onTap: (){
+              //   Navigator.push(
+              // context,
+              // MaterialPageRoute(
+              //     builder: (context) => MyOrder(
+              //           car: suggestions[i].imgurl,
+              //         )));
+              // },
             ));
   }
 }

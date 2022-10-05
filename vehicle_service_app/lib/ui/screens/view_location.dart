@@ -16,7 +16,7 @@ class location extends StatefulWidget {
 }
 
 class _locationState extends State<location> {
-  static const LatLng sourceLocation = LatLng(6.570071, -1.630783);
+  late LatLng sourceLocation = LatLng(currentLocation?.latitude?? 6.570071, currentLocation?.longitude?? -1.630783);
   static const LatLng destination = LatLng(6.700071, -1.630783);
 
   List<LatLng> polylineCoordinates= [];
@@ -28,6 +28,7 @@ class _locationState extends State<location> {
     location.getLocation().then(
       (location) {
       currentLocation = location;
+      getPolyPoints();
     });
   }
 
@@ -35,7 +36,7 @@ class _locationState extends State<location> {
     PolylinePoints polylinePoints = PolylinePoints();
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
       google_api_key, 
-       //PointLatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+      // PointLatLng(currentLocation?.latitude?? 6.570071, currentLocation?.longitude?? -1.630783),
       PointLatLng(sourceLocation.latitude, sourceLocation.longitude), 
       PointLatLng(destination.latitude, destination.longitude),
     );
@@ -53,7 +54,7 @@ class _locationState extends State<location> {
   @override
   void initState() {
     getCurrentLocation();
-    getPolyPoints();
+    
     super.initState(); 
   }
 
@@ -64,34 +65,40 @@ class _locationState extends State<location> {
       child: Scaffold(
         body: currentLocation == null 
         ? Center(child: Text('Loading...'))
-        : GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-                  zoom: 14.5,
-                ),
-                polylines: {
-                  Polyline(
-                    polylineId: PolylineId('route'),
-                    points: polylineCoordinates,
-                    color: Color.fromARGB(255, 41, 87, 124),
-                    width: 5,
-                  )
-                },
-                markers: {
-                  Marker(
-                    markerId: MarkerId('currentLocation'),
-                    position: LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
-                  ),
-                  Marker(
-                    markerId: MarkerId('source'),
-                    position: sourceLocation,
-                  ),
-                  Marker(
-                    markerId: MarkerId('destination'),
-                    position: destination,
-                  ),
-                },
-              ),
+        : FutureBuilder(
+          builder: (context,snapshot) {
+            return GoogleMap(
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+                      zoom: 14.5,
+                    ),
+                    polylines: {
+                      Polyline(
+                        polylineId: PolylineId('route'),
+                        points: polylineCoordinates,
+                        color: Color.fromARGB(255, 41, 87, 124),
+                        width: 5,
+                      )
+                    },
+                    markers: {
+                      Marker(
+                        markerId: MarkerId('currentLocation'),
+                        position: LatLng(currentLocation!.latitude!, currentLocation!.longitude!),
+                      ),
+                      Marker(
+                        markerId: MarkerId('source'),
+                        position: sourceLocation,
+                        infoWindow: InfoWindow(title: 'Me')
+                      ),
+                      Marker(
+                        markerId: MarkerId('destination'),
+                        position: destination,
+                        infoWindow: InfoWindow(title: 'Branch location')
+                      ),
+                    },
+                  );
+          }
+        ),
           
       ),
     );
