@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vehicle_service_app/config/constants.dart';
 import 'package:intl/intl.dart';
+import 'package:vehicle_service_app/ui/screens/new_dash.dart';
+import 'package:vehicle_service_app/ui/screens/view_location.dart';
 
 import 'package:vehicle_service_app/ui/widgets/widgets.dart';
 
@@ -305,6 +307,10 @@ class _OrderCarScreenState extends State<OrderCarScreen> {
       'customerImg': loggeduser.photoURL,
       'name': loggeduser.displayName,
       'phone': widget.userContact,
+      'carimg': widget.car['imgurl'],
+      'carname': widget.car['name'],
+      'descrip': widget.car['descip'],
+      'location': widget.car['city'],
     };
     cost = calccost();
 
@@ -338,7 +344,8 @@ class _OrderCarScreenState extends State<OrderCarScreen> {
               await newOrder.add(info).then((value) => {
                     print('data uploaded to firebase database'),
                     ScaffoldMessenger.of(context).showSnackBar(snackbar),
-                    Navigator.pop(context),
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeDash())),
                   });
             },
             child: Text('Ok , Proceed'),
