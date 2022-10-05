@@ -98,32 +98,32 @@ class _MyOrderState extends State<MyOrder> {
                                             WrapAround(
                                               myicon: Icons.speed,
                                               info: 'Car speed',
-                                              mynum: '300mph',
+                                              mynum: widget.car['speed'],
                                             ),
                                             WrapAround(
                                               myicon: Icons.escalator,
                                               info: 'Engine type',
-                                              mynum: 'V12',
+                                              mynum: widget.car['engineType'],
                                             ),
                                             WrapAround(
                                               myicon: Icons.garage,
                                               info: 'Mileage',
-                                              mynum: '9.8kmpl',
+                                              mynum: widget.car['millage'],
                                             ),
                                             WrapAround(
                                               myicon: Icons.location_city,
                                               info: 'Power',
-                                              mynum: '900Nm',
+                                              mynum: widget.car['power'],
                                             ),
                                             WrapAround(
                                               myicon: Icons.local_gas_station,
                                               info: 'Tank Capacity',
-                                              mynum: 'Manual',
+                                              mynum: widget.car['tankCapacity'],
                                             ),
                                             WrapAround(
                                               myicon: Icons.local_gas_station,
                                               info: 'Fuel Level',
-                                              mynum: 'Manual',
+                                              mynum: widget.car['fuelLevel'],
                                             ),
                                           ],
                                         )
@@ -145,29 +145,39 @@ class _MyOrderState extends State<MyOrder> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 WrapAround(
-                                                  myicon: Icons.garage,
+                                                  myicon: Icons.speed,
                                                   info: 'Car speed',
-                                                  mynum: '300mph',
+                                                  mynum: widget.car['speed'],
+                                                ),
+                                                WrapAround(
+                                                  myicon: Icons.escalator,
+                                                  info: 'Engine type',
+                                                  mynum:
+                                                      widget.car['engineType'],
                                                 ),
                                                 WrapAround(
                                                   myicon: Icons.garage,
-                                                  info: 'Car speed',
-                                                  mynum: '300mph',
+                                                  info: 'Mileage',
+                                                  mynum: widget.car['millage'],
                                                 ),
                                                 WrapAround(
-                                                  myicon: Icons.garage,
-                                                  info: 'Car speed',
-                                                  mynum: '300mph',
+                                                  myicon: Icons.location_city,
+                                                  info: 'Power',
+                                                  mynum: widget.car['power'],
                                                 ),
                                                 WrapAround(
-                                                  myicon: Icons.garage,
-                                                  info: 'Car speed',
-                                                  mynum: '300mph',
+                                                  myicon:
+                                                      Icons.local_gas_station,
+                                                  info: 'Tank Capacity',
+                                                  mynum: widget
+                                                      .car['tankCapacity'],
                                                 ),
                                                 WrapAround(
-                                                  myicon: Icons.garage,
-                                                  info: 'Car speed',
-                                                  mynum: '300mph',
+                                                  myicon:
+                                                      Icons.local_gas_station,
+                                                  info: 'Fuel Level',
+                                                  mynum:
+                                                      widget.car['fuelLevel'],
                                                 ),
                                               ],
                                             ),
@@ -190,8 +200,8 @@ class _MyOrderState extends State<MyOrder> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Myprice(
-                                            currency: '\$',
-                                            amount: '2500',
+                                            currency: widget.car['currency'],
+                                            amount: widget.car['amount'],
                                             dur: '/day'),
                                         ElevatedButton(
                                           child: const Text(

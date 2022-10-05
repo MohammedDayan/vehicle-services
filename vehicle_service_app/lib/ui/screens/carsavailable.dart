@@ -144,7 +144,7 @@ class _availCarState extends State<availCar> {
                                                           Text(data['speed']),
                                                         ],
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         width: 10,
                                                       ),
                                                       Row(

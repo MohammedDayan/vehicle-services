@@ -1,18 +1,69 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vehicle_service_app/config/constants.dart';
 import 'package:intl/intl.dart';
 
 import 'package:vehicle_service_app/ui/widgets/widgets.dart';
 
+late var carOwnerDocId;
+
+final loggeduser = FirebaseAuth.instance.currentUser!;
+FirebaseFirestore firestore = FirebaseFirestore.instance;
+CollectionReference newOrder =
+    firestore.collection('user').doc(carOwnerDocId).collection('orders');
+
 class OrderCarScreen extends StatefulWidget {
-  const OrderCarScreen({Key? key, required this.car}) : super(key: key);
+  var userContact;
+  var userdata;
+
+  var userLicense;
+
+  var userLocation;
+
+  OrderCarScreen({Key? key, required this.car}) : super(key: key);
   final car;
+  CollectionReference users = firestore.collection('user');
+
+  getuserinfo() async {
+    print("uid of carOwner " + car['ownerid']);
+
+    final snap = await users.where("id", isEqualTo: car['ownerid']);
+    snap.get().then((value) => {
+          userdata = value.docs[0].data(),
+          print('data from firebase db ' + userdata.toString()),
+          print('data from firebas one field ' + userdata['phone'].toString()),
+          carOwnerDocId = userdata['docId'],
+          print("car owner document ID" + carOwnerDocId)
+        });
+
+    final snap2 = await users.where("id", isEqualTo: loggeduser.uid);
+    snap2.get().then((value) => {
+          userdata = value.docs[0].data(),
+          print('data from firebase db ' + userdata.toString()),
+          print('data from firebas one field ' + userdata['phone'].toString()),
+          userContact = userdata['phone'],
+          userLicense = userdata['LisenceImg'],
+          userLocation = userdata['location']
+        });
+  }
 
   @override
   State<OrderCarScreen> createState() => _OrderCarScreenState();
 }
 
 class _OrderCarScreenState extends State<OrderCarScreen> {
+  late String cost;
+
+  late DateTime returnedDate;
+
+  late DateTime Datestarted;
+
+  void initState() {
+    print('Inint startsssss');
+    widget.getuserinfo();
+  }
+
   final startDate = TextEditingController();
   final returnDate = TextEditingController();
 
@@ -82,12 +133,8 @@ class _OrderCarScreenState extends State<OrderCarScreen> {
     //);
   }
 
-  void addorder() {}
-
   Widget OrderForm() {
     Size size = MediaQuery.of(context).size;
-    TextEditingController _startdate = TextEditingController();
-    TextEditingController _returndate = TextEditingController();
 
     return Padding(
       padding: EdgeInsets.only(left: 20, right: 20, top: 10),
@@ -144,8 +191,9 @@ class _OrderCarScreenState extends State<OrderCarScreen> {
 
                       if (pickeddate != null) {
                         setState(() {
-                          _startdate.text =
+                          startDate.text =
                               DateFormat('yyyy-MM-dd').format(pickeddate);
+                          Datestarted = pickeddate;
                         });
                       }
                     },
@@ -177,8 +225,10 @@ class _OrderCarScreenState extends State<OrderCarScreen> {
 
                       if (pickeddate != null) {
                         setState(() {
-                          _returndate.text =
+                          returnDate.text =
                               DateFormat('yyyy-MM-dd').format(pickeddate);
+
+                          returnedDate = pickeddate;
                         });
                       }
                     },
@@ -236,6 +286,64 @@ class _OrderCarScreenState extends State<OrderCarScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  String calccost() {
+    var dur = returnedDate.difference(Datestarted);
+    int hourrate = int.parse(widget.car['amount']);
+
+    int frmtdur = dur.inHours;
+    var ordcost = (frmtdur * hourrate);
+    return ordcost.toString();
+  }
+
+  Future<void> addorder() async {
+    final info = {
+      'id': loggeduser.uid,
+      'customerImg': loggeduser.photoURL,
+      'name': loggeduser.displayName,
+      'phone': widget.userContact,
+    };
+    cost = calccost();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text('Confirm Order'),
+        content: Text(
+          "Cost " + cost,
+          style: TextStyle(color: Colors.red),
+        ),
+        actions: [
+          ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.red)),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text('CANCEL'),
+          ),
+          ElevatedButton(
+            style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all(const Color(0xfff1bb274))),
+            onPressed: () async {
+              // upload order details
+
+              SnackBar snackbar = SnackBar(
+                  content: Text(
+                      "Request Sent.Approval Will be shown in Approved Requests "));
+              await newOrder.add(info).then((value) => {
+                    print('data uploaded to firebase database'),
+                    ScaffoldMessenger.of(context).showSnackBar(snackbar),
+                    Navigator.pop(context),
+                  });
+            },
+            child: Text('Ok , Proceed'),
+          ),
+        ],
       ),
     );
   }

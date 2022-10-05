@@ -70,12 +70,16 @@ class _updateProfileState extends State<updateProfile> {
     CollectionReference users = firestore.collection('user');
 
     Future<void> adduser() async {
-      await users.add({
+      final docref = users.doc();
+
+      docref.set({
+        'docId': docref.id,
         'id': loggeduser.uid,
         'name': name.text,
         'phone': phone.text,
         'nationalid': nationalID.text,
         'profileImg': urlDownloadProf,
+        'location': gps,
         'LisenceImg': urlDownloadLi,
       }).then((value) => print('data uploaded to firebase database'));
     }
